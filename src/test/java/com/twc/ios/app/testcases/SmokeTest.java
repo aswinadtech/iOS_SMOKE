@@ -109,7 +109,7 @@ public class SmokeTest extends TwcIosBaseTest {
 		// Preconditions
 		Functions.capabilities();
 		Functions.Appium_Autostart();
-		Utils.getCurrentMacIPAddressAndSetiPhoneProxy(true, true);
+		//Utils.getCurrentMacIPAddressAndSetiPhoneProxy(true, true);
 		proxy.startRecording();
 		proxy.clearCharlesSession();
 		Functions.archive_folder("Charles");
