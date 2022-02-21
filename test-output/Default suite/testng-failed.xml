@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test verbose="2" name="Default test">
+    <classes>
+      <class name="com.twc.ios.app.testcases.SmokeTest"/>
+    </classes>
+  </test> <!-- Default test -->
+  <test name="Default test(failed)">
+    <classes>
+      <class name="com.twc.ios.app.testcases.SmokeTest">
+        <methods>
+          <include name="Validate_Feed1_st_Custom_param"/>
+          <include name="Verify_Map_Details_mr_Custom_Parameter"/>
+          <include name="Validate_Marquee_tmp_Custom_param"/>
+          <include name="Validate_Marquee_uv_Custom_param"/>
+          <include name="Verify_Hourly_Details_BigAd2_Adcall"/>
+          <include name="Validate_PreRollVideo_description_url_Custom_param"/>
+          <include name="Validate_Feed1_dma_Custom_param"/>
+          <include name="Verify_AlertCenterAd"/>
+          <include name="Validate_Marquee_tmpc_Custom_param"/>
+          <include name="Verify_Hourly_Details_BigAd1_Adcall"/>
+          <include name="Validate_Marquee_ver_Custom_param"/>
+          <include name="Verify_HourlyDetails_AdCall"/>
+          <include name="Verify_Homescreen_Adhesive_AdCall"/>
+          <include name="Validate_DailyDetails_Banner_Ad_nzcs_Custom_param"/>
+          <include name="Validate_DailyDetails_Banner_Ad_hzcs_Custom_param"/>
+          <include name="Verify_Seasonal_Hub_Details_Page_AdCall"/>
+          <include name="Validate_Marquee_layer_Custom_param"/>
+          <include name="Validate_Marquee_locale_Custom_param"/>
+          <include name="afterClass"/>
+          <include name="Validate_Marquee_lang_Custom_param"/>
+          <include name="Verify_PrerollAd"/>
+          <include name="Validate_Marquee_floc_Custom_param"/>
+          <include name="beforeClass"/>
+          <include name="Validate_PreRollVideo_cxtg_Custom_param"/>
+          <include name="Validate_SafetyAndPreparednessCard_Call_Response"/>
+          <include name="Validate_daily_details_mnth_Custom_param"/>
+          <include name="Validate_DailyDetails_tf_Custom_param"/>
+          <include name="Validate_Feed1_lang_Custom_param"/>
+          <include name="Validate_Feed1_ord_Custom_param"/>
+          <include name="Verify_TrendingPage_AdCall"/>
+          <include name="Validate_Criteo_SDK_Initialization_API_Call_Response_Parameter_csmEnabled"/>
+          <include name="Validate_PreRollVideo_ttid_Custom_param"/>
+          <include name="Verify_WFXTriggers_Call_On_KillAndLaunch"/>
+          <include name="Validate_daily_details_fdynght_Custom_param"/>
+          <include name="Verify_SafetyAndPreparednessCard_AdCall"/>
+          <include name="Validate_Feed1_layer_Custom_param"/>
+          <include name="Validate_Marquee_zip_Custom_param"/>
+          <include name="Validate_IMA_SDK_version"/>
+          <include name="Validate_Marquee_st_Custom_param"/>
+          <include name="Validate_Marquee_ltv_Custom_param"/>
+          <include name="Verify_Daily_Details_AdUnits"/>
+          <include name="Validate_Feed1_adid_Custom_param"/>
+          <include name="Verify_AllergyDetails_Spotlight_AdCall"/>
+          <include name="Validate_Amazon_SDK_adsdk_parameter"/>
+          <include name="Validate_Criteo_SDK_Initialization_API_Call_Response_Code"/>
+          <include name="Validate_daily_details_fcnd_Custom_param"/>
+          <include name="Validate_Feed1_tmpc_Custom_param"/>
+          <include name="Validate_Marquee_plat_Custom_param"/>
+          <include name="Validate_Criteo_SDK_Bidder_API_Call_Response_Code"/>
+          <include name="Validate_MapDetails_wfxtg_Custom_param"/>
+          <include name="Validate_Marquee_tmpr_Custom_param"/>
+          <include name="Validate_Feed1_fhic_Custom_param"/>
+          <include name="Validate_Marquee_aid_Custom_param"/>
+          <include name="Verify_NextGen_IM_AdCall"/>
+          <include name="Validate_Marquee_dynght_Custom_param"/>
+          <include name="Verify_enable_preConditions_for_WeatherFx_API_Parameters"/>
+          <include name="validate_Marquee_sod_Custom_param"/>
+          <include name="Validate_DailyDetails_Banner_Ad_wfxtg_Custom_param"/>
+          <include name="Validate_Feed1_hmid_Custom_param"/>
+          <include name="Validate_Marquee_rmid_Custom_param"/>
+          <include name="Validate_Marquee_dnt_Custom_param"/>
+          <include name="Validate_Feed1_cnd_Custom_param"/>
+          <include name="Validate_Feed1_h2o_Custom_param"/>
+          <include name="Verify_Health_Allergy_ContentPage_AdCall"/>
+          <include name="Validate_PreRollVideo_zcs_Custom_param"/>
+          <include name="Validate_PreRollVideo_hzcs_Custom_param"/>
+          <include name="Validate_Criteo_SDK_config_app_Call_sdkVersion_parameter"/>
+          <include name="Validate_Feed1_zip_Custom_param"/>
+          <include name="Validate_Feed1_ct_Custom_param"/>
+          <include name="Validate_Feed1_ltv_Custom_param"/>
+          <include name="Validate_PreRollVideo_nzcs_Custom_param"/>
+          <include name="Validate_DailyDetails_Banner_Ad_cxtg_Custom_param"/>
+          <include name="Validate_Marquee_ct_Custom_param"/>
+          <include name="Validate_PreRollVideo_vid_Custom_param"/>
+          <include name="Validate_Marquee_ord_Custom_param"/>
+          <include name="Validate_Marquee_fhic_Custom_param"/>
+          <include name="Validate_HomeScreen_Call_tf_Custom_param"/>
+          <include name="Verify_enable_preConditions_for_WeatherFx_API_ParametersFromPlanningCard"/>
+          <include name="Validate_MapDetails_nzcs_Custom_param"/>
+          <include name="Verify_Hourly_Details_BigAd3_Adcall"/>
+          <include name="Validate_Feed1_mr_Custom_param"/>
+          <include name="Verify_Health_Running_ContentPage_AdCall"/>
+          <include name="Validate_Criteo_SDK_Initialization_API_Call_Response_Parameter_prefetchOnInitEnabled"/>
+          <include name="Validate_MapDetails_hzcs_Custom_param"/>
+          <include name="Validate_Feed1_rmid_Custom_param"/>
+          <include name="Validate_Marquee_fltmpc_Custom_param"/>
+          <include name="Verify_MapsDetails_AdCall"/>
+          <include name="Validate_Feed1_tmp_Custom_param"/>
+          <include name="Validate_Feed1_ver_Custom_param"/>
+          <include name="Validate_MapDetails_zcs_Custom_param"/>
+          <include name="Validate_Marquee_dma_Custom_param"/>
+          <include name="Validate_PreRollVideo_cmsid_Custom_param"/>
+          <include name="Validate_Feed1_wind_Custom_param"/>
+          <include name="Validate_Feed1_plat_Custom_param"/>
+          <include name="Validate_Feed1_sod_Custom_param"/>
+          <include name="Verify_Air_Quality_Details_AdCall"/>
+          <include name="Validate_PreRollVideo_wfxtg_Custom_param"/>
+          <include name="Validate_Marquee_ftl_Custom_param"/>
+          <include name="Validate_Marquee_hmid_Custom_param"/>
+          <include name="Validate_PreRollVideo_ref_Custom_param"/>
+          <include name="Validate_Feed1_floc_Custom_param"/>
+          <include name="Validate_Marquee_cnd_Custom_param"/>
+          <include name="Validate_Feed1_dnt_Custom_param"/>
+          <include name="Verify_Lotame_Call_On_KillAndLaunch"/>
+          <include name="Validate_Marquee_tile_Custom_param"/>
+          <include name="Validate_Criteo_SDK_Initialization_API_Call_Response_Parameter_liveBiddingEnabled"/>
+          <include name="Validate_Marquee_h2o_Custom_param"/>
+          <include name="Validate_Feed1_aid_Custom_param"/>
+          <include name="Validate_Marquee_adid_Custom_param"/>
+          <include name="Validate_Feed1_dynght_Custom_param"/>
+          <include name="Validate_Marquee_wind_Custom_param"/>
+          <include name="Verify_TurboAPI_Call_On_KillAndLaunch"/>
+          <include name="Validate_MapDetails_cxtg_Custom_param"/>
+          <include name="Validate_Criteo_SDK_Initialization_API_Call_Response_Parameter_remoteLogLevel"/>
+          <include name="kill_and_Launch_app_for_api_calls"/>
+          <include name="validate_Marquee_mr_Custom_param"/>
+          <include name="Validate_AllergyDetails_Spotlight_Ad_Size"/>
+          <include name="Validate_PreRollVideo_dnt_Custom_param"/>
+          <include name="Validate_Feed1_fltmpc_Custom_param"/>
+          <include name="Validate_Feed1_tile_Custom_param"/>
+          <include name="Validate_DailyDetails_Banner_Ad_zcs_Custom_param"/>
+          <include name="Validate_AllergyDetails_Spotlight_pos_Custom_param"/>
+          <include name="Validate_Feed1_locale_Custom_param"/>
+          <include name="Validate_GMA_SDK_version"/>
+          <include name="Validate_daily_details_dt_Custom_param"/>
+          <include name="Verify_Feed_Calls"/>
+          <include name="Validate_Feed1_ftl_Custom_param"/>
+          <include name="Validate_Feed1_tmpr_Custom_param"/>
+          <include name="Validate_Feed1_uv_Custom_param"/>
+        </methods>
+      </class> <!-- com.twc.ios.app.testcases.SmokeTest -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
