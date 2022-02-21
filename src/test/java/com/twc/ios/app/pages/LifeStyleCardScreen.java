@@ -6,6 +6,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 
+import com.twc.ios.app.charlesfunctions.CharlesProxy;
 import com.twc.ios.app.functions.Functions;
 import com.twc.ios.app.general.Driver;
 import com.twc.ios.app.general.TestBase;
@@ -101,6 +102,44 @@ public class LifeStyleCardScreen extends Utils {
 				 * 
 				 * }
 				 */
+				
+				
+				if (currentIndex.equalsIgnoreCase("Running") || currentIndex.equalsIgnoreCase("Boat & Beach")) {
+					CharlesProxy.proxy.stopRecording();
+					Functions.archive_folder("Charles");
+					TestBase.waitForMilliSeconds(5000);
+					CharlesProxy.proxy.getXml();
+					Utils.createXMLFileForCharlesSessionFile();
+					String sheetName = "Test";
+					if (currentIndex.equalsIgnoreCase("Running")) {
+						sheetName = "Health(goRun)";
+					} else if (currentIndex.equalsIgnoreCase("Boat & Beach")){
+						sheetName = "Health(boatAndBeach)";
+					}
+					if (Utils.isInterStitialAdCalExists("Smoke", sheetName)) {
+
+						if (Utils.isInterstitialCall_hasResponse("Smoke", sheetName)) {
+							if (unlimitedInterstitial) {
+								handle_Interstitial_Ad();
+							} else {
+								if (!interStitialDisplayed) {
+									/*
+									 * Since Entry Interstitial displayed upon navigating to Running/Boat & Beat Index pages
+									 */
+									handle_Interstitial_Ad();
+								} else {
+									System.out.println("Interstitial Ad is already handled, hence not handling again");
+									logStep("Interstitial Ad is already handled, hence not handling again");
+
+								}
+							}
+						}
+					}
+				Functions.delete_folder("Charles");
+				CharlesProxy.proxy.startRecording();
+				}
+				
+				
 
 				/*
 				 * below swipe_up() snippet of code is added to swipe till end of corresponding
@@ -142,9 +181,7 @@ public class LifeStyleCardScreen extends Utils {
 				}
 				attachScreen();
 				navigateBackToFeedCard();
-				if (unlimitedInterstitial) {
-					handle_Interstitial_Ad();
-				}
+								
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

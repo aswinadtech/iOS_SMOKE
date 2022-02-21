@@ -2,6 +2,7 @@ package com.twc.ios.app.pages;
 
 import org.openqa.selenium.By;
 
+import com.twc.ios.app.charlesfunctions.CharlesProxy;
 import com.twc.ios.app.functions.Functions;
 import com.twc.ios.app.general.Driver;
 import com.twc.ios.app.general.TestBase;
@@ -34,10 +35,33 @@ public class NewsCardScreen extends Utils {
 		TestBase.waitForMilliSeconds(6000);
 		attachScreen();
 		navigateBackToFeedCard();
-		if (unlimitedInterstitial) {
-			handle_Interstitial_Ad();
+		CharlesProxy.proxy.stopRecording();
+		Functions.archive_folder("Charles");
+		TestBase.waitForMilliSeconds(5000);
+		CharlesProxy.proxy.getXml();
+		Utils.createXMLFileForCharlesSessionFile();
+		if (Utils.isInterStitialAdCalExists("Smoke", "News(details)")) {
+
+			if (Utils.isInterstitialCall_hasResponse("Smoke", "News(details)")) {
+				if (unlimitedInterstitial) {
+					handle_Interstitial_Ad();
+				} else {
+					if (!interStitialDisplayed) {
+						/*
+						 * Since Exit Interstitial displayed upon click on back icon, handling it once
+						 * click on back
+						 */
+						handle_Interstitial_Ad();
+					} else {
+						System.out.println("Interstitial Ad is already handled, hence not handling again");
+						logStep("Interstitial Ad is already handled, hence not handling again");
+
+					}
+				}
+			}
 		}
-	
+		Functions.delete_folder("Charles");	
+		CharlesProxy.proxy.startRecording();
 	}
 	
 	@Step("Navigate To News Card Content Page And Not to Handle Interstitials")

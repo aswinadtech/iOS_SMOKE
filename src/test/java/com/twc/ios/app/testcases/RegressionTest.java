@@ -148,6 +148,7 @@ public class RegressionTest extends TwcIosBaseTest {
 		Functions.close_launchApp();
 		Functions.checkForAppState();
 		addrScreen.enternewAddress(false, "Atlanta, Georgia");
+		TestBase.waitForMilliSeconds(20000);
 		Functions.archive_folder("Charles");
 		TestBase.waitForMilliSeconds(5000);
 		proxy.getXml();
@@ -157,7 +158,7 @@ public class RegressionTest extends TwcIosBaseTest {
 
 	
 	@Test(priority = 51, enabled = true)
-	@Description("Verify amazon aax homescreen Adhesive preload ad call")
+	@Description("Verify amazon aax homescreen adhesive preload ad call")
 	public void Verify_amazon_aax_preload_homescreen_adhesive_adcall() throws Exception {
 		System.out.println("==============================================");
 		System.out.println(
@@ -170,15 +171,14 @@ public class RegressionTest extends TwcIosBaseTest {
 
 	}
 	 
+
 	@Test(priority = 52, enabled = true)
 	@Description("Verify amazon aax Feed1 preload ad call")
 	public void Verify_amazon_aax_preload_feed1_adcall() throws Exception {
 		System.out.println("==============================================");
 		System.out.println("=========================== amazon aax feed1 preload ad call ====================");
-
 		System.out.println("****** amazon aax feed1 preload ad call validation Started");
 		logStep("****** amazon aax feed1 preload ad call validation Started");
-
 		Utils.verifyAAX_SlotId("Smoke", "Feed1");
 
 	}
@@ -188,11 +188,9 @@ public class RegressionTest extends TwcIosBaseTest {
 	public void Verify_amazon_aax_preload_feed2_adcall() throws Exception {
 		System.out.println("==============================================");
 		System.out.println("=========================== amazon aax feed2 preload ad call ====================");
-
 		System.out.println("****** amazon aax feed2 preload ad call validation Started");
 		logStep("****** amazon aax feed2 preload ad call validation Started");
-
-		Utils.verifyAAX_SlotId("Smoke", "Feed2");
+		Utils.verifyAAX_SlotId("Smoke", "Feed2", false);
 
 	}
 
@@ -201,11 +199,9 @@ public class RegressionTest extends TwcIosBaseTest {
 	public void Verify_amazon_aax_preload_feed3_adcall() throws Exception {
 		System.out.println("==============================================");
 		System.out.println("=========================== amazon aax feed3 preload ad call ====================");
-
 		System.out.println("****** amazon aax feed3 preload ad call validation Started");
 		logStep("****** amazon aax feed3 preload ad call validation Started");
-
-		Utils.verifyAAX_SlotId("Smoke", "Feed3");
+		Utils.verifyAAX_SlotId("Smoke", "Feed3", false);
 
 	}
 
@@ -214,11 +210,9 @@ public class RegressionTest extends TwcIosBaseTest {
 	public void Verify_amazon_aax_preload_feed4_adcall() throws Exception {
 		System.out.println("==============================================");
 		System.out.println("=========================== amazon aax feed4 preload ad call ====================");
-
 		System.out.println("****** amazon aax feed4 preload ad call validation Started");
 		logStep("****** amazon aax feed4 preload ad call validation Started");
-
-		Utils.verifyAAX_SlotId("Smoke", "Feed4");
+		Utils.verifyAAX_SlotId("Smoke", "Feed4", false);
 
 	}
 
@@ -227,10 +221,8 @@ public class RegressionTest extends TwcIosBaseTest {
 	public void Verify_amazon_aax_preload_PreRollVideo_adcall() throws Exception {
 		System.out.println("==============================================");
 		System.out.println("=========================== amazon PreRollVideo preload ad call ====================");
-
 		System.out.println("****** amazon aax PreRollVideo preload ad call validation Started");
 		logStep("****** amazon aax PreRollVideo preload ad call validation Started");
-
 		Utils.verifyAAX_SlotId("Smoke", "PreRollVideo");
 
 	}
@@ -240,10 +232,8 @@ public class RegressionTest extends TwcIosBaseTest {
 	public void Verify_amazon_aax_preload_map_details_adcall() throws Exception {
 		System.out.println("==============================================");
 		System.out.println("=========================== amazon aax map details preload ad call ====================");
-
 		System.out.println("****** amazon aax Map details preload ad call validation Started");
 		logStep("****** amazon aax Map details preload ad call validation Started");
-
 		Utils.verifyAAX_SlotId("Smoke", "Map");
 
 	}
@@ -253,10 +243,8 @@ public class RegressionTest extends TwcIosBaseTest {
 	public void Verify_amazon_aax_preload_Daily_details_adcall() throws Exception {
 		System.out.println("==============================================");
 		System.out.println("=========================== amazon aax Daily Details preload ad call ====================");
-
 		System.out.println("****** amazon aax Daily Details preload ad call validation Started");
 		logStep("****** amazon aax Daily Details preload ad call validation Started");
-
 		Utils.verifyAAX_SlotId("Smoke", "Daily(10day)");
 
 	}
@@ -267,11 +255,31 @@ public class RegressionTest extends TwcIosBaseTest {
 		System.out.println("==============================================");
 		System.out
 				.println("=========================== amazon aax Hourly Details preload ad call ====================");
-
 		System.out.println("****** amazon aax Hourly Details preload ad call validation Started");
 		logStep("****** amazon aax Hourly Details preload ad call validation Started");
-
-		Utils.verifyAAX_SlotId("Smoke", "Hourly");
+		Utils.verifyAAX_SlotId("Smoke", "Hourly", false);
+	}
+	
+	@Test(priority = 61, enabled = true)
+	@Description("Verify amazon aax Hourly Bigad preload ad call")
+	public void Verify_amazon_aax_preload_Hourly_bigad_adcall() throws Exception {
+		System.out.println("==============================================");
+		System.out
+				.println("=========================== amazon aax Hourly Bigad preload ad call ====================");
+		System.out.println("****** amazon aax Hourly Bigad preload ad call validation Started");
+		logStep("****** amazon aax Hourly Bigad preload ad call validation Started");
+		Utils.verifyAAX_SlotId("Smoke", "Hourly1");
+	}
+	
+	@Test(priority = 62, enabled = true)
+	@Description("Verify amazon aax Covid details preload ad call")
+	public void Verify_amazon_aax_preload_Covid_details_adcall() throws Exception {
+		System.out.println("==============================================");
+		System.out
+				.println("=========================== amazon aax Covid details preload ad call ====================");
+		System.out.println("****** amazon aax Covid details preload ad call validation Started");
+		logStep("****** amazon aax Covid details preload ad call validation Started");
+		Utils.verifyAAX_SlotId("Smoke", "Covid");
 	}
 	
 	@Test(priority = 65, enabled = true)
@@ -291,7 +299,6 @@ public class RegressionTest extends TwcIosBaseTest {
 		System.out.println("==============================================");
 		System.out.println("****** Validating Google Mobile Ads SDK Version i.e. 'js' parameter of gampad call");
 		logStep("Validating Google Mobile Ads SDK Version i.e. 'js' parameter of gampad call");
-
 		Utils.validate_Noncustom_param_val_of_gampad("Smoke", "Marquee", "js", properties.getProperty("GMASDKVersion"));
 
 	}
@@ -491,13 +498,13 @@ public class RegressionTest extends TwcIosBaseTest {
 		System.out.println("****** preroll video ad call iu validation Started");
 		logStep("****** preroll video ad call iu validation Started");
 		proxy.clearCharlesSession();
+		Functions.archive_folder("Charles");
+		TestBase.waitForMilliSeconds(5000);
 		hmTab.clickonHomeTab();
 		proxy.clearCharlesSession();
 		// navigate to Video tab
 		vTab.navigateToVideoTab(true, proxy);
 		TestBase.waitForMilliSeconds(10000);
-		Functions.archive_folder("Charles");
-		TestBase.waitForMilliSeconds(5000);
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		Utils.get_iu_value_of_Feedcall("Smoke", "PreRollVideo");
@@ -548,12 +555,12 @@ public class RegressionTest extends TwcIosBaseTest {
 		Functions.checkForAppState();
 		stScreen.clear_Airlock_Cache();
 		proxy.clearCharlesSession();
+		Functions.archive_folder("Charles");
 		Functions.close_launchApp();
 		Functions.checkForAppState();
 		addrScreen.enternewAddress(false, "Atlanta, Georgia");
-		TestBase.waitForMilliSeconds(10000);
+		TestBase.waitForMilliSeconds(20000);
 		Utils.navigateTofeedCard("breakingnews");
-		Functions.archive_folder("Charles");
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 	}
@@ -605,8 +612,8 @@ public class RegressionTest extends TwcIosBaseTest {
 		System.out.println("****** Breaking News Severe1 Video1 Adcall verification test case Started");
 		logStep("****** Breaking News Severe1 Video1 Adcall verification test case Started");
 		proxy.clearCharlesSession();
-		bnScreen.navigateToBreakingNewsDetailsPage();
 		Functions.archive_folder("Charles");
+		bnScreen.navigateToBreakingNewsDetailsPage();
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		Utils.get_iu_value_of_Feedcall("Smoke", "PreRollVideo");
@@ -661,12 +668,12 @@ public class RegressionTest extends TwcIosBaseTest {
 		Functions.checkForAppState();
 		stScreen.clear_Airlock_Cache();
 		proxy.clearCharlesSession();
+		Functions.archive_folder("Charles");
 		Functions.close_launchApp();
 		Functions.checkForAppState();
 		addrScreen.enternewAddress(false, "Atlanta, Georgia");
-		TestBase.waitForMilliSeconds(10000);
+		TestBase.waitForMilliSeconds(20000);
 		Utils.navigateTofeedCard("breakingnews");
-		Functions.archive_folder("Charles");
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 
@@ -719,8 +726,8 @@ public class RegressionTest extends TwcIosBaseTest {
 		System.out.println("****** Breaking News Severe2 Video1 Adcall verification test case Started");
 		logStep("****** Breaking News Severe2 Video1 Adcall verification test case Started");
 		proxy.clearCharlesSession();
-		bnScreen.navigateToBreakingNewsDetailsPage();
 		Functions.archive_folder("Charles");
+		bnScreen.navigateToBreakingNewsDetailsPage();
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		Utils.get_iu_value_of_Feedcall("Smoke", "PreRollVideo");
@@ -770,6 +777,7 @@ public class RegressionTest extends TwcIosBaseTest {
 		proxy.enableRewriting();
 		proxy.startRecording();
 		proxy.disableMapLocal();
+		Functions.archive_folder("Charles");
 		Functions.close_launchApp();
 		Functions.checkForAppState();
 		
@@ -779,10 +787,9 @@ public class RegressionTest extends TwcIosBaseTest {
 		Functions.close_launchApp();
 		Functions.checkForAppState();
 		addrScreen.enternewAddress(false, "Atlanta, Georgia");
-		TestBase.waitForMilliSeconds(10000);
+		TestBase.waitForMilliSeconds(20000);
 			
-		Utils.navigateTofeedCard("Breaking News");
-		Functions.archive_folder("Charles");
+		Utils.navigateTofeedCard("Breaking News");		
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 	}
@@ -795,8 +802,8 @@ public class RegressionTest extends TwcIosBaseTest {
 		System.out.println("****** Editorial Video Headline Card Breaking News Card Severe1 Video1 Adcall verification test case Started");
 		logStep("****** Editorial Video Headline Card Breaking News Card Severe1 Video1 Adcall verification test case Started");
 		proxy.clearCharlesSession();
-		bnScreen.navigateToEditorialVideoHeadlineCardBreakingNewsDetailsPage();
 		Functions.archive_folder("Charles");
+		bnScreen.navigateToEditorialVideoHeadlineCardBreakingNewsDetailsPage();	
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		Utils.get_iu_value_of_Feedcall("Smoke", "PreRollVideo");
@@ -833,6 +840,7 @@ public class RegressionTest extends TwcIosBaseTest {
 		proxy.enableRewriting();
 		proxy.startRecording();
 		proxy.disableMapLocal();
+		Functions.archive_folder("Charles");
 		Functions.close_launchApp();
 		Functions.checkForAppState();
 		
@@ -843,10 +851,9 @@ public class RegressionTest extends TwcIosBaseTest {
 		Functions.close_launchApp();
 		Functions.checkForAppState();
 		addrScreen.enternewAddress(false, "Atlanta, Georgia");
-		TestBase.waitForMilliSeconds(10000);
+		TestBase.waitForMilliSeconds(20000);
 			
-		Utils.navigateTofeedCard("Breaking News");
-		Functions.archive_folder("Charles");
+		Utils.navigateTofeedCard("Breaking News");	
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 	}
@@ -859,8 +866,8 @@ public class RegressionTest extends TwcIosBaseTest {
 		System.out.println("****** Editorial Video Headline Card Breaking News Card Severe2 Video1 Adcall verification test case Started");
 		logStep("****** Editorial Video Headline Card Breaking News Card Severe2 Video1 Adcall verification test case Started");
 		proxy.clearCharlesSession();
-		bnScreen.navigateToEditorialVideoHeadlineCardBreakingNewsDetailsPage();
 		Functions.archive_folder("Charles");
+		bnScreen.navigateToEditorialVideoHeadlineCardBreakingNewsDetailsPage();	
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		Utils.get_iu_value_of_Feedcall("Smoke", "PreRollVideo");
@@ -896,15 +903,15 @@ public class RegressionTest extends TwcIosBaseTest {
 		logStep("Validating NextGen IM Static Ad in test mode ");
 		proxy.disableRewriting();
 		proxy.clearCharlesSession();
+		Functions.archive_folder("Charles");
+		TestBase.waitForMilliSeconds(5000);
 		hmTab.clickonHomeTab();
 		stScreen.select_Airlock_UserGroup("AdsTestAdUnitOnly");
 		proxy.clearCharlesSession();
 		Functions.close_launchApp();
 		Functions.checkForAppState();
 		addrScreen.enternewAddress(false, "07095", "Woodbridge Township, New Jersey");
-		TestBase.waitForMilliSeconds(20000);
-		Functions.archive_folder("Charles");
-		TestBase.waitForMilliSeconds(5000);
+		TestBase.waitForMilliSeconds(20000);		
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		Utils.verifyPubadCal("Smoke", "NextGenIM");
@@ -977,10 +984,10 @@ public class RegressionTest extends TwcIosBaseTest {
 		System.out.println("****** Validating NextGen IM Video Ad in test mode");
 		logStep("Validating NextGen IM Video Ad in test mode ");
 		proxy.clearCharlesSession();
-		addrScreen.enternewAddress(false, "61920", "Charleston, Illinois");
-		TestBase.waitForMilliSeconds(20000);
 		Functions.archive_folder("Charles");
 		TestBase.waitForMilliSeconds(5000);
+		addrScreen.enternewAddress(false, "61920", "Charleston, Illinois");
+		TestBase.waitForMilliSeconds(20000);	
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		Utils.verifyPubadCal("Smoke", "NextGenIM");
@@ -1084,7 +1091,7 @@ public class RegressionTest extends TwcIosBaseTest {
 		
 	}
 	
-	@Test(priority = 654, enabled = true)
+	/*@Test(priority = 654, enabled = true)
 	@Description("Validating Tapability Of Seasonal Hub Details Page Test Ad when app in test mode")
 	public void Validate_TapabilityOfSeasonalHubDetailsPageTestAd() throws Exception {
 		System.out.println("==============================================");
@@ -1098,7 +1105,7 @@ public class RegressionTest extends TwcIosBaseTest {
 		sScreen.navigateToDetailsOfFirstIndexOfSeasonalHubCard();
 		sScreen.verifyTapabilityOfTestAdOnSeasonalHubDetailsPage();
 		
-	}
+	}*/
 
 	/**
 	 *This Script Validate Integrated Daily Details Ad Call and its response
@@ -1115,12 +1122,12 @@ public class RegressionTest extends TwcIosBaseTest {
 		Functions.close_launchApp();
 		Functions.checkForAppState();
 		proxy.clearCharlesSession();
-		addrScreen.enternewAddress(false, "30124", "Cave Spring, Georgia");
-		TestBase.waitForMilliSeconds(10000);
-		dTab.navigateToDailyTab();
-		TestBase.waitForMilliSeconds(10000);
 		Functions.archive_folder("Charles");
 		TestBase.waitForMilliSeconds(5000);
+		addrScreen.enternewAddress(false, "30124", "Cave Spring, Georgia");
+		TestBase.waitForMilliSeconds(20000);
+		dTab.navigateToDailyTab();
+		TestBase.waitForMilliSeconds(10000);	
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		Utils.get_v3_wx_forecast_daily_15day_data();
@@ -1191,16 +1198,16 @@ public class RegressionTest extends TwcIosBaseTest {
 			hmTab.clickonHomeTab();
 			stScreen.select_Airlock_UserGroup("IntegratedAdCard");
 			proxy.clearCharlesSession();
+			Functions.archive_folder("Charles");
 			Functions.close_launchApp();
 			Functions.checkForAppState();
 			addrScreen.enternewAddress(false, "30124", "Cave Spring, Georgia");
-			TestBase.waitForMilliSeconds(10000);
+			TestBase.waitForMilliSeconds(20000);
 			// Since as part of sticky ad implementation on UI weather.feed1 appears as weather.feed0 and so on
 			//hence modified Integrated feed card name to weather.feed0 from weather.feed1
 			Utils.navigateTofeedCard("weather.feed0");
 			TestBase.waitForMilliSeconds(20000);
-			Functions.archive_folder("Charles");
-			
+					
 		} finally {
 			proxy.getXml();
 			Utils.createXMLFileForCharlesSessionFile();
@@ -1270,13 +1277,13 @@ public class RegressionTest extends TwcIosBaseTest {
 		try {
 			hmTab.clickonHomeTab();
 			proxy.clearCharlesSession();
+			Functions.archive_folder("Charles");
 			addrScreen.enternewAddress(false, "08824", "South Brunswick, New Jersey");
-			TestBase.waitForMilliSeconds(10000);
+			TestBase.waitForMilliSeconds(20000);
 			// Since as part of sticky ad implementation on UI weather.feed1 appears as weather.feed0 and so on
 			//hence modified Integrated feed card name to weather.feed0 from weather.feed1
 			Utils.navigateTofeedCard("weather.feed0");
-			TestBase.waitForMilliSeconds(20000);
-			Functions.archive_folder("Charles");
+			TestBase.waitForMilliSeconds(20000);		
 			
 		} finally {
 			proxy.getXml();
@@ -1355,7 +1362,7 @@ public class RegressionTest extends TwcIosBaseTest {
 		System.out.println("****** Entry Interstitial Ad validation of Hourly Tab Started");
 		logStep("Entry Interstitial Ad validation of Hourly Tab Started ");
 
-		stScreen.select_Airlock_Branch("UnlimitedInterstitialAutomation01");
+		stScreen.select_Airlock_Branch("UnlimitedInterstitialAutomation02");
 		stScreen.select_Airlock_UserGroup("UnlimitedInterstitial");
 		proxy.clearCharlesSession();
 		Functions.close_launchApp();
@@ -1528,21 +1535,21 @@ public class RegressionTest extends TwcIosBaseTest {
 		System.out.println("****** Enable Preconfiguration for Watson Moment and Planning Moment Cards");
 		logStep("Enable Preconfiguration for Watson Moment and Planning Moment Cards ");
 		hmTab.clickonHomeTab();
-		stScreen.select_Airlock_Branch("WM Cards New");
+		stScreen.select_Airlock_Branch("WM Cards New1");
 		stScreen.select_Airlock_UserGroup("WM Cards");
 		Functions.close_launchApp();
 		Functions.checkForAppState();
 		proxy.clearCharlesSession();
+		Functions.archive_folder("Charles");
+		TestBase.waitForMilliSeconds(5000);
 		addrScreen.enternewAddress(false, "New York City, New York");
-		TestBase.waitForMilliSeconds(10000);
+		TestBase.waitForMilliSeconds(20000);
 		try {
 			Utils.navigateToAllCards(false, false);
 		} catch (Exception e) {
 			System.out.println("There is an exception while navigting to all the feed cards.");
 			logStep("There is an exception while navigting to all the feed cards.");
 		} finally {
-			Functions.archive_folder("Charles");
-			TestBase.waitForMilliSeconds(5000);
 			proxy.getXml();
 			Utils.createXMLFileForCharlesSessionFile();
 		}

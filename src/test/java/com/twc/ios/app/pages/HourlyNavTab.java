@@ -52,23 +52,29 @@ public class HourlyNavTab extends Utils {
 		/**
 		 * Since Hourly has Entry Interstitial, handling it once navigated to Hourly Tab
 		 */
+		CharlesProxy.proxy.stopRecording();
 		Functions.archive_folder("Charles");
 		TestBase.waitForMilliSeconds(5000);
-		CharlesProxy.proxy.getXml();
-		Utils.createXMLFileForCharlesSessionFile();
-		if (Utils.isInterStitialAdCalExists("Smoke", "Hourly")) {
+		if (interStitialAdcallSuccessful) {
+			handle_Interstitial_Ad();
+		} else {
+			CharlesProxy.proxy.getXml();
+			Utils.createXMLFileForCharlesSessionFile();
+			if (Utils.isInterStitialAdCalExists("Smoke", "Hourly")) {
 
-			if (Utils.isInterstitialCall_hasResponse("Smoke", "Hourly")) {
-				if (!interStitialDisplayed) {
-					handle_Interstitial_Ad();
-				} else {
-					System.out.println("Interstitial Ad is already handled, hence not handling again");
-					logStep("Interstitial Ad is already handled, hence not handling again");
+				if (Utils.isInterstitialCall_hasResponse("Smoke", "Hourly")) {
+					if (!interStitialDisplayed) {
+						handle_Interstitial_Ad();
+					} else {
+						System.out.println("Interstitial Ad is already handled, hence not handling again");
+						logStep("Interstitial Ad is already handled, hence not handling again");
 
+					}
 				}
 			}
 		}
-		
+		CharlesProxy.proxy.startRecording();
+		Functions.delete_folder("Charles");	
 
 	}
 	

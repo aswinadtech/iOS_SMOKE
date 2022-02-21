@@ -179,7 +179,7 @@ public class Functions extends Driver {
 	public static boolean nextGenIMadDisplayed = false;
 	public static boolean interStitialChecked = false;
 	public static boolean interStitialDisplayed = false;
-	public static boolean interStitialAdcallPresent = false;
+	public static boolean interStitialAdcallSuccessful = false;
 	public static boolean unlimitedInterstitial = false;
 	public static boolean planningCardAdChecked = false;
 	public static int feedAdCount = 0;
@@ -1849,6 +1849,7 @@ public class Functions extends Driver {
 
 		System.out.println("Taking Screenshot after handling Interstitial Ad");
 		logStep("Taking Screenshot after handling Interstitial Ad");
+		interStitialAdcallSuccessful = false;
 		attachScreen();
 	}
 

@@ -2,6 +2,7 @@ package com.twc.ios.app.pages;
 
 import org.openqa.selenium.By;
 
+import com.twc.ios.app.charlesfunctions.CharlesProxy;
 import com.twc.ios.app.functions.Functions;
 import com.twc.ios.app.general.Driver;
 import com.twc.ios.app.general.TestBase;
@@ -42,11 +43,32 @@ public class AirQualityCardScreen extends Utils {
 			System.out.println("Siri popup not present validating aq page ad");
 			logStep("Siri popup not present validating aq page ad");
 		}
+		CharlesProxy.proxy.stopRecording();
+		Functions.archive_folder("Charles");
+		TestBase.waitForMilliSeconds(5000);
+		CharlesProxy.proxy.getXml();
+		Utils.createXMLFileForCharlesSessionFile();
+		if (Utils.isInterStitialAdCalExists("Smoke", "Air Quality(Content)")) {
+
+			if (Utils.isInterstitialCall_hasResponse("Smoke", "Air Quality(Content)")) {
+				if (unlimitedInterstitial) {
+					handle_Interstitial_Ad();
+				} else {
+					if (!interStitialDisplayed) {
+						handle_Interstitial_Ad();
+					} else {
+						System.out.println("Interstitial Ad is already handled, hence not handling again");
+						logStep("Interstitial Ad is already handled, hence not handling again");
+
+					}
+				}
+			}
+		}
+		Functions.delete_folder("Charles");
+		CharlesProxy.proxy.startRecording();
 		attachScreen();
 		navigateBackToFeedCard();
-		if (unlimitedInterstitial) {
-			handle_Interstitial_Ad();
-		}
+		
 	}
 	
 	@Step("Navigate To AirQuality Card Content Page And Not to Handle Interstitials")

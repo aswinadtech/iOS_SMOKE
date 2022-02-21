@@ -109,7 +109,7 @@ public class SmokeTest extends TwcIosBaseTest {
 		// Preconditions
 		Functions.capabilities();
 		Functions.Appium_Autostart();
-		//Utils.getCurrentMacIPAddressAndSetiPhoneProxy(true, true);
+		Utils.getCurrentMacIPAddressAndSetiPhoneProxy(true, true);
 		proxy.startRecording();
 		proxy.clearCharlesSession();
 		Functions.archive_folder("Charles");
@@ -153,14 +153,15 @@ public class SmokeTest extends TwcIosBaseTest {
 		System.out.println("==============================================");
 		System.out.println("****** Feed Calls Validation test started");
 		logStep("Feed Calls Validation test started");
-//		stScreen.select_Airlock_Branch("IOSAUTOMATION01");
-		stScreen.select_Airlock_Branch("RegressionTesting");
-//		stScreen.select_Airlock_UserGroup("IOSAUTOMATION");
+		Functions.archive_folder("Charles");
+		TestBase.waitForMilliSeconds(5000);
+		stScreen.select_Airlock_Branch("IOSAUTOMATION02");
+		stScreen.select_Airlock_UserGroup("IOSAUTOMATION");
 		Functions.close_launchApp();
-				
+		Utils.verifytinterstitialAdcallBeforeClearSession("Smoke", "Hourly");
 		proxy.clearCharlesSession();
 		addrScreen.enternewAddress(false, "Atlanta, Georgia");
-		TestBase.waitForMilliSeconds(10000);
+		TestBase.waitForMilliSeconds(20000);
 		try {
 			Utils.navigateToAllCards(true, false);
 			
@@ -169,8 +170,6 @@ public class SmokeTest extends TwcIosBaseTest {
 			logStep("There is an exception while navigting to all the feed cards.");
 			e.printStackTrace();
 		} finally {
-			Functions.archive_folder("Charles");
-			TestBase.waitForMilliSeconds(5000);
 			proxy.getXml();
 			Utils.createXMLFileForCharlesSessionFile();
 			ParseForVideoOrderedList.getVideoCall_IU_Value_from_adZone();
@@ -233,7 +232,7 @@ public class SmokeTest extends TwcIosBaseTest {
 
 		System.out.println("****** Hourly details iu validation Started");
 		logStep("****** Hourly details iu validation Started");
-		Utils.verifyPubadCal("Smoke", "Hourly", true);
+		Utils.verifyPubadCal("Smoke", "Hourly", false);
 
 	}
 
@@ -246,7 +245,7 @@ public class SmokeTest extends TwcIosBaseTest {
 
 		System.out.println("****** Today's Detailed/Trending page Ad cal iu validation Started ");
 		logStep("****** Today's Detailed/Trending page Ad cal iu validation Started ");
-		Utils.verifyPubadCal("Smoke", "Today", true);
+		Utils.verifyPubadCal("Smoke", "Today", false);
 	}
 
 	@Test(priority = 105, enabled = true)
@@ -257,7 +256,7 @@ public class SmokeTest extends TwcIosBaseTest {
 
 		System.out.println("****** Air Quality Details page test cases Started");
 		logStep("****** Air Quality Details page test cases Started");
-		Utils.verifyPubadCal("Smoke", "Air Quality(Content)", true);
+		Utils.verifyPubadCal("Smoke", "Air Quality(Content)", false);
 	}
 
 	@Test(priority = 106, enabled = true)
@@ -294,7 +293,7 @@ public class SmokeTest extends TwcIosBaseTest {
 
 		System.out.println("****** Health & Activities (Running) Content page Ad cal iu validation Started");
 		logStep("****** Health & Activities (Running) Content page Ad cal iu validation Started");
-		Utils.verifyPubadCal("Smoke", "Health(goRun)", true);
+		Utils.verifyPubadCal("Smoke", "Health(goRun)", false);
 
 	}
 
@@ -1711,6 +1710,7 @@ public class SmokeTest extends TwcIosBaseTest {
 	Functions.close_launchApp();
 	Functions.checkForAppState();
 	addrScreen.enternewAddress(false, "Atlanta, Georgia");
+	TestBase.waitForMilliSeconds(20000);
 	proxy.clearCharlesSession();
 	dTab.validateDailyDetailsAdUnits("Smoke", "Daily(10day)");
 	}
@@ -1763,8 +1763,8 @@ public class SmokeTest extends TwcIosBaseTest {
 		proxy.clearCharlesSession();
 		TestBase.waitForMilliSeconds(2000);
 		// navigate to Radar tab
-		rTab.navigateToRadarTab();
 		Functions.archive_folder("Charles");
+		rTab.navigateToRadarTab();
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		Utils.validate_custom_param_val_of_gampad("Smoke", "Map", "mr", "0");
@@ -1778,8 +1778,8 @@ public class SmokeTest extends TwcIosBaseTest {
 		proxy.clearCharlesSession();
 		TestBase.waitForMilliSeconds(2000);
 		// navigate to Radar tab
-		rTab.navigateToRadarTab();
 		Functions.archive_folder("Charles");
+		rTab.navigateToRadarTab();
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		Utils.validate_custom_param_val_of_gampad("Smoke", "Map", "mr", "0");
@@ -1800,21 +1800,22 @@ public class SmokeTest extends TwcIosBaseTest {
 		System.out.println("==============================================");
 		System.out.println("****** Verify Enable Preconditions for WeatherFX API Parameters test started");
 		logStep("Verify Enable Preconditions for WeatherFX API Parameters test started");
+		Functions.archive_folder("Charles");
 		proxy.clearCharlesSession();
 		Functions.close_launchApp();
 		Functions.checkForAppState();
 		addrScreen.enternewAddress(false, "30124", "Cave Spring, Georgia");
-		TestBase.waitForMilliSeconds(5000);
+		TestBase.waitForMilliSeconds(20000);
 		addrScreen.enternewAddress(false, "07095", "Woodbridge Township, New Jersey");
-		TestBase.waitForMilliSeconds(5000);
+		TestBase.waitForMilliSeconds(20000);
 		addrScreen.enternewAddress(false, "61920", "Charleston, Illinois");
-		TestBase.waitForMilliSeconds(5000);
+		TestBase.waitForMilliSeconds(20000);
 		proxy.clearCharlesSession();
 		Functions.close_launchApp();
 		Functions.checkForAppState();
 		TestBase.waitForMilliSeconds(2000);
 		addrScreen.enternewAddress(false, "30124", "Cave Spring, Georgia");
-		TestBase.waitForMilliSeconds(5000);
+		TestBase.waitForMilliSeconds(20000);
 		// navigate to Hourly tab
 		// navigateToHourlyTab();
 		// TestBase.waitForMilliSeconds(2000);
@@ -1825,8 +1826,6 @@ public class SmokeTest extends TwcIosBaseTest {
 		rTab.navigateToRadarTab();
 		TestBase.waitForMilliSeconds(2000);
 		hmTab.clickonHomeTab();
-		Functions.archive_folder("Charles");
-		TestBase.waitForMilliSeconds(5000);
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		// Utils.get_v3_wx_forecast_daily_15day_data();
@@ -2089,12 +2088,13 @@ public class SmokeTest extends TwcIosBaseTest {
 		System.out.println(
 				"****** Verify Enable Preconditions for WeatherFX API Parameters from planning card test started");
 		logStep("Verify Enable Preconditions for WeatherFX API Parameters from planning card test started");
+		Functions.archive_folder("Charles");
 		Utils.wfxParameters.clear();
 		proxy.clearCharlesSession();
 		Functions.close_launchApp();
 		Functions.checkForAppState();
 		addrScreen.enternewAddress(false, "61920", "Charleston, Illinois");
-		TestBase.waitForMilliSeconds(5000);
+		TestBase.waitForMilliSeconds(20000);
 		// navigate to Planning Card
 		// Utils.navigateToPlanningCard();
 		Utils.navigateTofeedCard("planning-containerView");
@@ -2110,8 +2110,6 @@ public class SmokeTest extends TwcIosBaseTest {
 		navigateBackToFeedCard();
 		TestBase.waitForMilliSeconds(2000);
 		// hmTab.clickonHomeTab();
-		Functions.archive_folder("Charles");
-		TestBase.waitForMilliSeconds(5000);
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		Utils.loadWeatherFXAPIParameterValuestoMap_ByZipCode("61920");
@@ -2387,25 +2385,24 @@ public class SmokeTest extends TwcIosBaseTest {
 		System.out.println("==============================================");
 		System.out.println("****** Preroll-video ad test case Started");
 		logStep("****** Preroll-video ad test case Started");
+		Functions.archive_folder("Charles");
 		Utils.wfxParameters.clear();
 		proxy.clearCharlesSession();
 		Functions.close_launchApp();
 		Functions.checkForAppState();
 		// addrScreen.enternewAddress(false, "Atlanta, Georgia");
 		addrScreen.enternewAddress(false, "07095", "Woodbridge Township, New Jersey");
-		TestBase.waitForMilliSeconds(10000);
-		Functions.archive_folder("Charles");
-		TestBase.waitForMilliSeconds(5000);
+		TestBase.waitForMilliSeconds(20000);
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		Utils.loadWeatherFXAPIParameterValuestoMap_ByZipCode("07095");
+		Functions.archive_folder("Charles");
+		//TestBase.waitForMilliSeconds(5000);
 		proxy.clearCharlesSession();
 		// TestBase.waitForMilliSeconds(5000);
 		// navigate to Video tab
 		vTab.navigateToVideoTab(true, proxy);
 		TestBase.waitForMilliSeconds(10000);
-		Functions.archive_folder("Charles");
-		TestBase.waitForMilliSeconds(5000);
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		Utils.get_iu_value_of_Feedcall("Smoke", "PreRollVideo");
@@ -2849,12 +2846,12 @@ public class SmokeTest extends TwcIosBaseTest {
 		// Functions.retryclear();
 		System.out.println("****** Seasonal Hub Details page validation test cases Started");
 		logStep("****** Seasonal Hub Details page validation test cases Started");
-		addrScreen.enternewAddress(false, "Atlanta, Georgia");
-		TestBase.waitForMilliSeconds(10000);
-		Utils.navigateTofeedCard("seasonalhub");
 		Functions.archive_folder("Charles");
-		sScreen.verifyPubadCal_SeasonalHub("Smoke", "SeasonalHub(Details)");
-		//sScreen.verifyPubadCal_SeasonalHub("Smoke", "SeasonalHub(Details)", false);
+		addrScreen.enternewAddress(false, "Atlanta, Georgia");
+		TestBase.waitForMilliSeconds(20000);
+		Utils.navigateTofeedCard("seasonalhub");
+		//sScreen.verifyPubadCal_SeasonalHub("Smoke", "SeasonalHub(Details)");
+		sScreen.verifyPubadCal_SeasonalHub("Smoke", "SeasonalHub(Details)", false);
 		hmTab.clickonHomeTab();
 	}
 

@@ -148,9 +148,9 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		proxy.clearCharlesSession();
 		Functions.close_launchApp();
 		Functions.checkForAppState();
-		addrScreen.enternewAddress(false, "Atlanta, Georgia");
 		Functions.archive_folder("Charles");
-		TestBase.waitForMilliSeconds(5000);
+		addrScreen.enternewAddress(false, "Atlanta, Georgia");
+		TestBase.waitForMilliSeconds(20000);
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		Utils.get_v3_wx_forecast_daily_15day_data();
@@ -190,7 +190,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("=========================== amazon aax feed2 preload ad call ====================");
 		System.out.println("****** amazon aax feed2 preload ad call validation Started");
 		logStep("****** amazon aax feed2 preload ad call validation Started");
-		Utils.verifyAAX_SlotId("Smoke", "Feed2");
+		Utils.verifyAAX_SlotId("Smoke", "Feed2", false);
 
 	}
 
@@ -201,7 +201,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("=========================== amazon aax feed3 preload ad call ====================");
 		System.out.println("****** amazon aax feed3 preload ad call validation Started");
 		logStep("****** amazon aax feed3 preload ad call validation Started");
-		Utils.verifyAAX_SlotId("Smoke", "Feed3");
+		Utils.verifyAAX_SlotId("Smoke", "Feed3", false);
 
 	}
 
@@ -212,7 +212,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("=========================== amazon aax feed4 preload ad call ====================");
 		System.out.println("****** amazon aax feed4 preload ad call validation Started");
 		logStep("****** amazon aax feed4 preload ad call validation Started");
-		Utils.verifyAAX_SlotId("Smoke", "Feed4");
+		Utils.verifyAAX_SlotId("Smoke", "Feed4", false);
 
 	}
 
@@ -257,7 +257,29 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 				.println("=========================== amazon aax Hourly Details preload ad call ====================");
 		System.out.println("****** amazon aax Hourly Details preload ad call validation Started");
 		logStep("****** amazon aax Hourly Details preload ad call validation Started");
-		Utils.verifyAAX_SlotId("Smoke", "Hourly");
+		Utils.verifyAAX_SlotId("Smoke", "Hourly", false);
+	}
+	
+	@Test(priority = 61, enabled = true)
+	@Description("Verify amazon aax Hourly Bigad preload ad call")
+	public void Verify_amazon_aax_preload_Hourly_bigad_adcall() throws Exception {
+		System.out.println("==============================================");
+		System.out
+				.println("=========================== amazon aax Hourly Bigad preload ad call ====================");
+		System.out.println("****** amazon aax Hourly Bigad preload ad call validation Started");
+		logStep("****** amazon aax Hourly Bigad preload ad call validation Started");
+		Utils.verifyAAX_SlotId("Smoke", "Hourly1");
+	}
+	
+	@Test(priority = 62, enabled = true)
+	@Description("Verify amazon aax Covid details preload ad call")
+	public void Verify_amazon_aax_preload_Covid_details_adcall() throws Exception {
+		System.out.println("==============================================");
+		System.out
+				.println("=========================== amazon aax Covid details preload ad call ====================");
+		System.out.println("****** amazon aax Covid details preload ad call validation Started");
+		logStep("****** amazon aax Covid details preload ad call validation Started");
+		Utils.verifyAAX_SlotId("Smoke", "Covid");
 	}
 	
 	@Test(priority = 65, enabled = true)
@@ -313,10 +335,10 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		Functions.close_launchApp();
 		Functions.checkForAppState();
 		TestBase.waitForMilliSeconds(5000);
+		Functions.archive_folder("Charles");
 		//Functions.enternewAddress(false, "Atlanta, Georgia");
 		//TestBase.waitForMilliSeconds(10000);
 		hmTab.clickonHomeTab();
-		Functions.archive_folder("Charles");
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		Utils.load_amazon_bid_values_from_aaxCalls("Smoke", "PreRollVideo", true);
@@ -354,18 +376,18 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out
 				.println("****** Enabling Preconfigurations to validate amazon bid id's and criteo parameters Started");
 		logStep("****** Enabling Preconfigurations to validate amazon bid id's and criteo parameters Started");
-		stScreen.select_Airlock_Branch("IOSAUTOMATION01");
+		stScreen.select_Airlock_Branch("IOSAUTOMATION02");
 		stScreen.select_Airlock_UserGroup("IOSAUTOMATION");
+		Functions.archive_folder("Charles");
 		proxy.clearCharlesSession();
 		Functions.close_launchApp();
 		Functions.checkForAppState();
 		TestBase.waitForMilliSeconds(5000);
 		addrScreen.enternewAddress(false, "New York City, New York");
-		TestBase.waitForMilliSeconds(15000);
+		TestBase.waitForMilliSeconds(20000);
 		Utils.navigateToAllCards(true, true);
 		hmTab.clickonHomeTab();
 		TestBase.waitForMilliSeconds(5000);
-		Functions.archive_folder("Charles");
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		// Utils.get_v3_wx_forecast_daily_15day_data();
@@ -394,7 +416,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		Utils.validate_aax_bid_value_with_gampad_bid_value("Smoke", "Feed1", true, false);
 	}
 
-	@Test(priority = 304, enabled = true)
+    /*@Test(priority = 304, enabled = true)
 	@Description("Verify Feed2 ad call amazon bid id")
 	public void Verify_Feed2_ad_call_amazon_bid_id() throws Exception {
 		System.out.println("==============================================");
@@ -402,9 +424,9 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("****** Feed2 ad call amazon bid id validation Started");
 		logStep("****** Feed2 ad call amazon bid id validation Started");
 		Utils.validate_aax_bid_value_with_gampad_bid_value("Smoke", "Feed2", true, false);
-	}
+	}*/
 
-	@Test(priority = 305, enabled = true)
+	/*@Test(priority = 305, enabled = true)
 	@Description("Verify Feed3 ad call amazon bid id")
 	public void Verify_Feed3_ad_call_amazon_bid_id() throws Exception {
 		System.out.println("==============================================");
@@ -413,9 +435,9 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("****** Feed3 ad call amazon bid id validation Started");
 		logStep("****** Feed3 ad call amazon bid id validation Started");
 		Utils.validate_aax_bid_value_with_gampad_bid_value("Smoke", "Feed3", true, false);
-	}
+	}*/
 
-	@Test(priority = 306, enabled = true)
+	/*@Test(priority = 306, enabled = true)
 	@Description("Verify Feed4 ad call amazon bid id")
 	public void Verify_Feed4_ad_call_amazon_bid_id() throws Exception {
 		System.out.println("==============================================");
@@ -424,7 +446,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("****** Feed4 ad call amazon bid id validation Started");
 		logStep("****** Feed4 ad call amazon bid id validation Started");
 		Utils.validate_aax_bid_value_with_gampad_bid_value("Smoke", "Feed4", true, false);
-	}
+	}*/
 
 	@Test(priority = 307, enabled = true)
 	@Description("Verify amazon aax Feed5 ad call")
@@ -434,11 +456,11 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 
 		System.out.println("****** amazon aax feed5 ad call validation Started");
 		logStep("****** amazon aax feed5 ad call validation Started");
-		Utils.verifyAAX_SlotId("Smoke", "Feed5");
+		Utils.verifyAAX_SlotId("Smoke", "Feed5", false);
 
 	}
 
-	@Test(priority = 308, enabled = true)
+	/*@Test(priority = 308, enabled = true)
 	@Description("Verify Feed5 ad call amazon bid id")
 	public void Verify_Feed5_ad_call_amazon_bid_id() throws Exception {
 		System.out.println("==============================================");
@@ -447,7 +469,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("****** Feed5 ad call amazon bid id validation Started");
 		logStep("****** Feed5 ad call amazon bid id validation Started");
 		Utils.validate_aax_bid_value_with_gampad_bid_value("Smoke", "Feed5", true, true);
-	}
+	}*/
 
 	@Test(priority = 309, enabled = true)
 	@Description("Verify amazon aax Feed6 ad call")
@@ -457,11 +479,11 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 
 		System.out.println("****** amazon aax feed6 ad call validation Started");
 		logStep("****** amazon aax feed6 ad call validation Started");
-		Utils.verifyAAX_SlotId("Smoke", "Feed6");
+		Utils.verifyAAX_SlotId("Smoke", "Feed6", false);
 
 	}
 
-	@Test(priority = 310, enabled = true)
+	/*@Test(priority = 310, enabled = true)
 	@Description("Verify Feed6 ad call amazon bid id")
 	public void Verify_Feed6_ad_call_amazon_bid_id() throws Exception {
 		System.out.println("==============================================");
@@ -470,9 +492,9 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("****** Feed6 ad call amazon bid id validation Started");
 		logStep("****** Feed6 ad call amazon bid id validation Started");
 		Utils.validate_aax_bid_value_with_gampad_bid_value("Smoke", "Feed6", true, true);
-	}
+	}*/
 
-	@Test(priority = 320, enabled = true)
+	/*@Test(priority = 320, enabled = true)
 	@Description("Verify Hourly Details ad call amazon bid id")
 	public void Verify_Hourly_Details_ad_call_amazon_bid_id() throws Exception {
 		System.out.println("==============================================");
@@ -481,7 +503,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("****** Hourly Details ad call amazon bid id validation Started");
 		logStep("****** Hourly Details ad call amazon bid id validation Started");
 		Utils.validate_aax_bid_value_with_gampad_bid_value("Smoke", "Hourly", true, false);
-	}
+	}*/
 
 	@Test(priority = 321, enabled = true)
 	@Description("Verify Daily Details ad call amazon bid id")
@@ -514,11 +536,11 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("****** amazon aax Today Details ad call validation Started");
 		logStep("****** amazon aax Today Details ad call validation Started");
 
-		Utils.verifyAAX_SlotId("Smoke", "Today");
+		Utils.verifyAAX_SlotId("Smoke", "Today", false);
 
 	}
 
-	@Test(priority = 324, enabled = true)
+	/*@Test(priority = 324, enabled = true)
 	@Description("Verify Today Details ad call amazon bid id")
 	public void Verify_Today_Details_ad_call_amazon_bid_id() throws Exception {
 		System.out.println("==============================================");
@@ -527,7 +549,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("****** Today Details ad call amazon bid id validation Started");
 		logStep("****** Today Details ad call amazon bid id validation Started");
 		Utils.validate_aax_bid_value_with_gampad_bid_value("Smoke", "Today", true, true);
-	}
+	}*/
 
 	@Test(priority = 325, enabled = true)
 	@Description("Verify amazon aax News Details ad call")
@@ -551,11 +573,11 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("****** amazon aax AQ Details ad call validation Started");
 		logStep("****** amazon aax AQ Details ad call validation Started");
 
-		Utils.verifyAAX_SlotId("Smoke", "Air Quality(Content)");
+		Utils.verifyAAX_SlotId("Smoke", "Air Quality(Content)", false);
 
 	}
 
-	@Test(priority = 328, enabled = true)
+	/*@Test(priority = 328, enabled = true)
 	@Description("Verify AQ Details ad call amazon bid id")
 	public void Verify_AQ_Details_ad_call_amazon_bid_id() throws Exception {
 		System.out.println("==============================================");
@@ -564,7 +586,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("****** AQ Details ad call amazon bid id validation Started");
 		logStep("****** AQ Details ad call amazon bid id validation Started");
 		Utils.validate_aax_bid_value_with_gampad_bid_value("Smoke", "Air Quality(Content)", true, true);
-	}
+	}*/
 
 	@Test(priority = 335, enabled = true)
 	@Description("Verify amazon aax Seasonal Hub Details ad call")
@@ -575,11 +597,11 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("****** amazon aax Seasonal Hub Details ad call validation Started");
 		logStep("****** amazon aax Seasonal Hub Details ad call validation Started");
 
-		Utils.verifyAAX_SlotId("Smoke", "SeasonalHub(Details)");
+		Utils.verifyAAX_SlotId("Smoke", "SeasonalHub(Details)", false);
 
 	}
 
-	@Test(priority = 336, enabled = true)
+	/*@Test(priority = 336, enabled = true)
 	@Description("Verify Seasonal Hub Details ad call amazon bid id")
 	public void Verify_SeasonalHub_Details_ad_call_amazon_bid_id() throws Exception {
 		System.out.println("==============================================");
@@ -589,7 +611,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("****** Seasonal Hub Details ad call amazon bid id validation Started");
 		logStep("****** Seasonal Hub Details ad call amazon bid id validation Started");
 		Utils.validate_aax_bid_value_with_gampad_bid_value("Smoke", "SeasonalHub(Details)", true, true);
-	}
+	}*/
 
 	@Test(priority = 337, enabled = true)
 	@Description("Verify amazon aax AlertCenter ad call")
@@ -626,11 +648,11 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("****** amazon aax Health Boat & Beach Details ad call validation Started");
 		logStep("****** amazon aax Health Boat & Beach Details ad call validation Started");
 
-		Utils.verifyAAX_SlotId("Smoke", "Health(boatAndBeach)");
+		Utils.verifyAAX_SlotId("Smoke", "Health(boatAndBeach)", false);
 
 	}
 
-	@Test(priority = 340, enabled = true)
+	/*@Test(priority = 340, enabled = true)
 	@Description("Verify Health Boat & Beach Details ad call amazon bid id")
 	public void Verify_Health_BoatAndBeach_Details_ad_call_amazon_bid_id() throws Exception {
 		System.out.println("==============================================");
@@ -640,7 +662,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("****** Health Boat & Beach Details ad call amazon bid id validation Started");
 		logStep("****** Health Boat & Beach Details ad call amazon bid id validation Started");
 		Utils.validate_aax_bid_value_with_gampad_bid_value("Smoke", "Health(boatAndBeach)", true, true);
-	}
+	}*/
 
 	@Test(priority = 341, enabled = true)
 	@Description("Verify amazon aax Health Running Details ad call")
@@ -652,11 +674,11 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("****** amazon aax Health Running Details ad call validation Started");
 		logStep("****** amazon aax Health Running Details ad call validation Started");
 
-		Utils.verifyAAX_SlotId("Smoke", "Health(goRun)");
+		Utils.verifyAAX_SlotId("Smoke", "Health(goRun)", false);
 
 	}
 
-	@Test(priority = 342, enabled = true)
+	/*@Test(priority = 342, enabled = true)
 	@Description("Verify Health Running Details ad call amazon bid id")
 	public void Verify_Health_Running_Details_ad_call_amazon_bid_id() throws Exception {
 		System.out.println("==============================================");
@@ -666,7 +688,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out.println("****** Health Running Details ad call amazon bid id validation Started");
 		logStep("****** Health Running Details ad call amazon bid id validation Started");
 		Utils.validate_aax_bid_value_with_gampad_bid_value("Smoke", "Health(goRun)", true, true);
-	}
+	}*/
 
 	@Test(priority = 343, enabled = true)
 	@Description("Verify amazon aax Flu Articles ad call")
@@ -964,7 +986,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 				true);
 	}
 
-	@Test(priority = 417, enabled = true)
+	/*@Test(priority = 417, enabled = true)
 	@Description("Verify cpm parameter of Criteo SDK inapp v2 call with Feed2 call")
 	public void Verify_Criteo_SDK_inapp_v2_Call_cpm_parameter_with_Feed2_gampad_call() throws Exception {
 		System.out.println("==============================================");
@@ -1000,9 +1022,9 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		logStep("****** Criteo SDK invapp v2 call displayUrl parameter with Feed2 call validation Started");
 		Utils.validate_Criteo_SDK_inapp_v2_call_param_value_with_gampad_param_value("Smoke", "Feed2", "displayUrl",
 				true);
-	}
+	}*/
 
-	@Test(priority = 420, enabled = true)
+	/*@Test(priority = 420, enabled = true)
 	@Description("Verify cpm parameter of Criteo SDK inapp v2 call with Feed3 call")
 	public void Verify_Criteo_SDK_inapp_v2_Call_cpm_parameter_with_Feed3_gampad_call() throws Exception {
 		System.out.println("==============================================");
@@ -1038,9 +1060,9 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		logStep("****** Criteo SDK invapp v2 call displayUrl parameter with Feed3 call validation Started");
 		Utils.validate_Criteo_SDK_inapp_v2_call_param_value_with_gampad_param_value("Smoke", "Feed3", "displayUrl",
 				true);
-	}
+	}*/
 
-	@Test(priority = 423, enabled = true)
+	/*@Test(priority = 423, enabled = true)
 	@Description("Verify cpm parameter of Criteo SDK inapp v2 call with Feed4 call")
 	public void Verify_Criteo_SDK_inapp_v2_Call_cpm_parameter_with_Feed4_gampad_call() throws Exception {
 		System.out.println("==============================================");
@@ -1076,9 +1098,9 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		logStep("****** Criteo SDK invapp v2 call displayUrl parameter with Feed4 call validation Started");
 		Utils.validate_Criteo_SDK_inapp_v2_call_param_value_with_gampad_param_value("Smoke", "Feed4", "displayUrl",
 				true);
-	}
+	}*/
 
-	@Test(priority = 426, enabled = true)
+	/*@Test(priority = 426, enabled = true)
 	@Description("Verify cpm parameter of Criteo SDK inapp v2 call with Feed5 call")
 	public void Verify_Criteo_SDK_inapp_v2_Call_cpm_parameter_with_Feed5_gampad_call() throws Exception {
 		System.out.println("==============================================");
@@ -1114,9 +1136,9 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		logStep("****** Criteo SDK invapp v2 call displayUrl parameter with Feed5 call validation Started");
 		Utils.validate_Criteo_SDK_inapp_v2_call_param_value_with_gampad_param_value("Smoke", "Feed5", "displayUrl",
 				true);
-	}
+	}*/
 
-	@Test(priority = 429, enabled = true)
+	/*@Test(priority = 429, enabled = true)
 	@Description("Verify cpm parameter of Criteo SDK inapp v2 call with Feed6 call")
 	public void Verify_Criteo_SDK_inapp_v2_Call_cpm_parameter_with_Feed6_gampad_call() throws Exception {
 		System.out.println("==============================================");
@@ -1152,9 +1174,9 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		logStep("****** Criteo SDK invapp v2 call displayUrl parameter with Feed6 call validation Started");
 		Utils.validate_Criteo_SDK_inapp_v2_call_param_value_with_gampad_param_value("Smoke", "Feed6", "displayUrl",
 				true);
-	}
+	}*/
 
-	@Test(priority = 432, enabled = true)
+	/*@Test(priority = 432, enabled = true)
 	@Description("Verify cpm parameter of Criteo SDK inapp v2 call with Hourly Details call")
 	public void Verify_Criteo_SDK_inapp_v2_Call_cpm_parameter_with_hourly_details_gampad_call() throws Exception {
 		System.out.println("==============================================");
@@ -1193,9 +1215,9 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		logStep("****** Criteo SDK invapp v2 call displayUrl parameter with hourly details call validation Started");
 		Utils.validate_Criteo_SDK_inapp_v2_call_param_value_with_gampad_param_value("Smoke", "Hourly", "displayUrl",
 				true);
-	}
+	}*/
 
-	@Test(priority = 435, enabled = true)
+	/*@Test(priority = 435, enabled = true)
 	@Description("Verify cpm parameter of Criteo SDK inapp v2 call with Today Details call")
 	public void Verify_Criteo_SDK_inapp_v2_Call_cpm_parameter_with_today_details_gampad_call() throws Exception {
 		System.out.println("==============================================");
@@ -1233,7 +1255,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		logStep("****** Criteo SDK invapp v2 call displayUrl parameter with Today details call validation Started");
 		Utils.validate_Criteo_SDK_inapp_v2_call_param_value_with_gampad_param_value("Smoke", "Today", "displayUrl",
 				true);
-	}
+	}*/
 
 	@Test(priority = 438, enabled = true)
 	@Description("Verify cpm parameter of Criteo SDK inapp v2 call with Daily Details call")
@@ -1314,7 +1336,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		Utils.validate_Criteo_SDK_inapp_v2_call_param_value_with_gampad_param_value("Smoke", "Map", "displayUrl", true);
 	}
 
-	@Test(priority = 444, enabled = true)
+	/*@Test(priority = 444, enabled = true)
 	@Description("Verify cpm parameter of Criteo SDK inapp v2 call with AQ Details call")
 	public void Verify_Criteo_SDK_inapp_v2_Call_cpm_parameter_with_aq_details_gampad_call() throws Exception {
 		System.out.println("==============================================");
@@ -1352,7 +1374,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		logStep("****** Criteo SDK invapp v2 call displayUrl parameter with aq details call validation Started");
 		Utils.validate_Criteo_SDK_inapp_v2_call_param_value_with_gampad_param_value("Smoke", "Air Quality(Content)",
 				"displayUrl", true);
-	}
+	}*/
 
 	@Test(priority = 450, enabled = true)
 	@Description("Verify cpm parameter of Criteo SDK inapp v2 call with AlertCenter call")
@@ -1392,7 +1414,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 				true);
 	}
 
-	@Test(priority = 453, enabled = true)
+	/*@Test(priority = 453, enabled = true)
 	@Description("Verify cpm parameter of Criteo SDK inapp v2 call with boatAndBeach Details call")
 	public void Verify_Criteo_SDK_inapp_v2_Call_cpm_parameter_with_boatAndBeach_details_gampad_call() throws Exception {
 		System.out.println("==============================================");
@@ -1434,9 +1456,9 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		logStep("****** Criteo SDK invapp v2 call displayUrl parameter with boatAndBeach Details call validation Started");
 		Utils.validate_Criteo_SDK_inapp_v2_call_param_value_with_gampad_param_value("Smoke", "Health(boatAndBeach)",
 				"displayUrl", true);
-	}
+	}*/
 
-	@Test(priority = 456, enabled = true)
+	/*@Test(priority = 456, enabled = true)
 	@Description("Verify cpm parameter of Criteo SDK inapp v2 call with Running Details call")
 	public void Verify_Criteo_SDK_inapp_v2_Call_cpm_parameter_with_Running_details_gampad_call() throws Exception {
 		System.out.println("==============================================");
@@ -1477,7 +1499,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		logStep("****** Criteo SDK invapp v2 call displayUrl parameter with Running Details call validation Started");
 		Utils.validate_Criteo_SDK_inapp_v2_call_param_value_with_gampad_param_value("Smoke", "Health(goRun)",
 				"displayUrl", true);
-	}
+	}*/
 
 	@Test(priority = 459, enabled = true)
 	@Description("Verify cpm parameter of Criteo SDK inapp v2 call with Weather Articles--Health(coldAndFluArticles) call")
@@ -1585,6 +1607,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		Functions.close_launchApp();
 		Functions.checkForAppState();
 		TestBase.waitForMilliSeconds(5000);
+		Functions.archive_folder("Charles");
 		//Functions.enternewAddress(false, "New York City, New York");
 		//TestBase.waitForMilliSeconds(15000);
 
@@ -1593,11 +1616,10 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		 * ads
 		 */
 
-		hrTab.navigateToHourlyTab();
+		hrTab.navigateToHourlyTabAndHandleInterstitialAd();
 		Functions.swipe_Up_ByIterations(10);
 		hmTab.clickonHomeTab();
 		TestBase.waitForMilliSeconds(5000);
-		Functions.archive_folder("Charles");
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		// Utils.get_v3_wx_forecast_daily_15day_data();
@@ -1788,11 +1810,11 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		logStep("****** News Details ad call bid id validation Started");
 		try {
 			proxy.clearCharlesSession();
+			Functions.archive_folder("Charles");
 			// navigate to News Card
 			Utils.navigateTofeedCard("news");
 			proxy.clearCharlesSession();
 			nScreen.navigateToNewsDetails();
-			Functions.archive_folder("Charles");
 			/**
 			 * Waiting morethan 30 seconds to allow ad refresh and generate  gampad call twice
 			 */
@@ -1803,6 +1825,33 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 			Utils.validate_aax_bid_value_with_gampad_bid_value("Smoke", "News(details)", true, true);
 		} finally {
 			navigateBackToFeedCard();
+			CharlesProxy.proxy.stopRecording();
+			Functions.archive_folder("Charles");
+			TestBase.waitForMilliSeconds(5000);
+			CharlesProxy.proxy.getXml();
+			Utils.createXMLFileForCharlesSessionFile();
+			if (Utils.isInterStitialAdCalExists("Smoke", "News(details)")) {
+
+				if (Utils.isInterstitialCall_hasResponse("Smoke", "News(details)")) {
+					if (unlimitedInterstitial) {
+						handle_Interstitial_Ad();
+					} else {
+						if (!interStitialDisplayed) {
+							/*
+							 * Since Exit Interstitial displayed upon click on back icon, handling it once
+							 * click on back
+							 */
+							handle_Interstitial_Ad();
+						} else {
+							System.out.println("Interstitial Ad is already handled, hence not handling again");
+							logStep("Interstitial Ad is already handled, hence not handling again");
+
+						}
+					}
+				}
+			}
+			Functions.delete_folder("Charles");	
+			CharlesProxy.proxy.startRecording();
 		}
 	}
 	
@@ -1817,13 +1866,13 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		logStep("****** Enabling Preconfigurations to validate amazon bid id's of Interstitial Call Started");
 		stScreen.select_Airlock_Branch("UnlimitedInterstitialAutomation01");
 		stScreen.select_Airlock_UserGroup("amazon");
+		Functions.archive_folder("Charles");
 		//stScreen.select_Airlock_Branch("HDB");
 		//stScreen.select_Airlock_UserGroup("Criteo");
 		proxy.clearCharlesSession();
 		Functions.close_launchApp();
 		Functions.checkForAppState();
 		TestBase.waitForMilliSeconds(5000);
-		Functions.archive_folder("Charles");
 		proxy.getXml();
 		Utils.createXMLFileForCharlesSessionFile();
 		// Utils.get_v3_wx_forecast_daily_15day_data();

@@ -81,6 +81,7 @@ public class PlanningCardScreen extends Utils {
 			/*
 			 * Since Hourly has Entry Interstitial, handling it once navigated to Hourly Tab
 			 */
+			CharlesProxy.proxy.stopRecording();
 			Functions.archive_folder("Charles");
 			TestBase.waitForMilliSeconds(5000);
 			CharlesProxy.proxy.getXml();
@@ -97,6 +98,8 @@ public class PlanningCardScreen extends Utils {
 					}
 				}
 			}
+			Functions.delete_folder("Charles");	
+			CharlesProxy.proxy.startRecording();
 
 		} catch (Exception e) {
 			System.out.println("Hourly Details not displayed");
@@ -219,15 +222,32 @@ public class PlanningCardScreen extends Utils {
 			logStep("Navigated to Today Details from Planning Card");
 			attachScreen();
 			/*
-			 * Since Hourly has Entry Interstitial, handling it once navigated to Hourly Tab
+			 * Since Today Details has Entry Interstitial, handling it once navigated to Hourly Tab
 			 */
-			if (!interStitialDisplayed) {
-				handle_Interstitial_Ad();
-			} else {
-				System.out.println("Interstitial Ad is already handled, hence not handling again");
-				logStep("Interstitial Ad is already handled, hence not handling again");
+			CharlesProxy.proxy.stopRecording();
+			Functions.archive_folder("Charles");
+			TestBase.waitForMilliSeconds(5000);
+			CharlesProxy.proxy.getXml();
+			Utils.createXMLFileForCharlesSessionFile();
+			if (Utils.isInterStitialAdCalExists("Smoke", "Today")) {
 
+				if (Utils.isInterstitialCall_hasResponse("Smoke", "Today")) {
+					if (unlimitedInterstitial) {
+						handle_Interstitial_Ad();
+					} else {
+						if (!interStitialDisplayed) {
+							
+							handle_Interstitial_Ad();
+						} else {
+							System.out.println("Interstitial Ad is already handled, hence not handling again");
+							logStep("Interstitial Ad is already handled, hence not handling again");
+
+						}
+					}
+				}
 			}
+			Functions.delete_folder("Charles");
+			CharlesProxy.proxy.startRecording();
 
 		} catch (Exception e) {
 			System.out.println("Today Details not displayed");

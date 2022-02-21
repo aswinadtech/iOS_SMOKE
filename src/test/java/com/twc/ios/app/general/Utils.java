@@ -617,7 +617,7 @@ public class Utils extends Functions {
 	 */
 	public static boolean isInterStitialAdCalExists(String excelName, String sheetName) throws Exception {
 		ReadExcelValues.excelValues(excelName, sheetName);
-
+		boolean interStitialAdcallPresent = false;
 		// Read the content form file
 		File fXmlFile = new File(outfile.getName());
 		// File fXmlFile = outfile;
@@ -668,6 +668,194 @@ public class Utils extends Functions {
 		}
 
 		return interStitialAdcallPresent;
+	}
+	
+	/**
+	 * Verifies whether interstitial call has response
+	 * @param excelName
+	 * @param sheetName
+	 * @return
+	 * @throws Exception
+	 */
+	public static boolean isInterstitialCall_hasResponse(String excelName, String sheetName) throws Exception {
+		ReadExcelValues.excelValues(excelName, sheetName);
+		File fXmlFile = new File(outfile.getName());
+
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		dbFactory.setValidating(false);
+		dbFactory.setNamespaceAware(true);
+		dbFactory.setFeature("http://xml.org/sax/features/namespaces", false);
+		// dbFactory.setNamespaceAware(true);
+		dbFactory.setFeature("http://xml.org/sax/features/validation", false);
+		dbFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-dtd-grammar", false);
+		dbFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+
+		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+
+		Document doc = dBuilder.parse(fXmlFile);
+// Getting the transaction element by passing xpath expression
+		NodeList nodeList = doc.getElementsByTagName("transaction");
+		String xpathExpression = "charles-session/transaction/@query";
+		List<String> getQueryList = evaluateXPath(doc, xpathExpression);
+
+// Getting custom_params amzn_b values
+		List<String> customParamsList = new ArrayList<String>();
+
+		String iuId = null;
+
+		// String iuId =
+		// "iu=%2F7646%2Fapp_iphone_us%2Fdb_display%2Fhome_screen%2Ftoday";
+		iuId = ReadExcelValues.data[17][Cap];
+
+		boolean iuExists = false;
+		for (String qry : getQueryList) {
+			if (qry.contains(iuId)) {
+				iuExists = true;
+				break;
+			}
+		}
+		boolean flag = false;
+		boolean resflag = false;
+		if (iuExists) {
+			System.out.println(iuId + " ad call is present");
+			logStep(iuId + " ad call is present");
+			outerloop: for (int p = 0; p < nodeList.getLength(); p++) {
+				// System.out.println("Total transactions: "+nodeList.getLength());
+				if (nodeList.item(p) instanceof Node) {
+					Node node = nodeList.item(p);
+					if (node.hasChildNodes()) {
+						NodeList nl = node.getChildNodes();
+						for (int j = 0; j < nl.getLength(); j++) {
+							// System.out.println("node1 length is: "+nl.getLength());
+							Node innernode = nl.item(j);
+							if (innernode != null) {
+								// System.out.println("Innernode name is: "+innernode.getNodeName());
+								if (innernode.getNodeName().equals("request")) {
+									if (innernode.hasChildNodes()) {
+										NodeList n2 = innernode.getChildNodes();
+										for (int k = 0; k < n2.getLength(); k++) {
+											// System.out.println("node2 length is: "+n2.getLength());
+											Node innernode2 = n2.item(k);
+											if (innernode2 != null) {
+												// System.out.println("Innernode2 name is: "+innernode2.getNodeName());
+												if (innernode2.getNodeType() == Node.ELEMENT_NODE) {
+													Element eElement = (Element) innernode2;
+													// System.out.println("Innernode2 element name is:
+													// "+eElement.getNodeName());
+													if (eElement.getNodeName().equals("headers")) {
+														if (innernode2.hasChildNodes()) {
+															NodeList n3 = innernode2.getChildNodes();
+															for (int q = 0; q < n3.getLength(); q++) {
+																// System.out.println("node3 length is:
+																// "+n3.getLength());
+																Node innernode3 = n3.item(q);
+																if (innernode3 != null) {
+																	// System.out.println("Innernode3 name is:
+																	// "+innernode3.getNodeName());
+																	if (innernode3.getNodeType() == Node.ELEMENT_NODE) {
+																		Element eElement1 = (Element) innernode3;
+																		// System.out.println("Innernode3 element name
+																		// is: "+eElement1.getNodeName());
+																		if (eElement1.getNodeName().equals("header")) {
+																			String content = eElement1.getTextContent();
+																			// System.out.println("request
+																			// body"+content);
+
+																			if (content.contains(iuId)) {
+																				flag = true;
+																				// System.out.println("request
+																				// body"+content);
+																				// istofRequestBodies.add(content);
+																				// System.out.println("request body
+																				// found "+content);
+																				// break;
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+
+								if (flag) {
+									// System.out.println("Exiting after found true ");
+									// System.out.println("checking innernode name is: "+innernode.getNodeName());
+									if (innernode.getNodeName().equals("response")) {
+										// System.out.println(innernode.getNodeName());
+										if (innernode.hasChildNodes()) {
+											NodeList n2 = innernode.getChildNodes();
+											for (int k = 0; k < n2.getLength(); k++) {
+												Node innernode2 = n2.item(k);
+												if (innernode2 != null) {
+													if (innernode2.getNodeType() == Node.ELEMENT_NODE) {
+														Element eElement = (Element) innernode2;
+														if (eElement.getNodeName().equals("body")) {
+															String content = eElement.getTextContent();
+															// System.out.println("response body "+content);
+															if (content.contains(ReadExcelValues.data[13][Cap])) {
+																resflag = true;
+																break outerloop;
+
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+
+								}
+								// break;
+							}
+						}
+					}
+				}
+				flag = false;
+			}
+
+		} else {
+			System.out.println(iuId + " ad call is not present");
+			logStep(iuId + " ad call is not present");
+
+		}
+
+		// return flag;
+
+		// Get Pubad call from
+
+		if (resflag) {
+			System.out.println("Interstitial call has response, hence Interstitial Ad to be displayed");
+			logStep("Interstitial call has response, hence Interstitial Ad to be displayed");
+			return resflag;
+		} else {
+			System.out.println("Interstitial call doesnt have response, hence Interstitial Ad not to be displayed");
+			logStep("Interstitial call doesnt have response, hence Interstitial Ad not to be displayed");
+			return resflag;
+		}
+
+	}
+	
+	/**
+	 * This method mainly used before clearning charles session to check  for  interstitial call.
+	 * @param excelName
+	 * @param sheetName
+	 * @throws Exception 
+	 */
+	public static void verifytinterstitialAdcallBeforeClearSession(String excelName, String sheetName) throws Exception {
+		CharlesProxy.proxy.stopRecording();
+		Functions.archive_folder("Charles");
+		TestBase.waitForMilliSeconds(5000);
+		CharlesProxy.proxy.getXml();
+		Utils.createXMLFileForCharlesSessionFile();
+		if (isInterStitialAdCalExists(excelName, sheetName) && isInterstitialCall_hasResponse(excelName, sheetName)) {
+			interStitialAdcallSuccessful = true;
+		}
+		CharlesProxy.proxy.startRecording();
 	}
 
 	/**
@@ -5106,6 +5294,7 @@ public class Utils extends Functions {
 			if (scrollend >= 15) {
 				boolean isFooterCard = false;
 				try {
+					ReadExcelValues.excelValues("Smoke", "General");
 					if (Ad.findElementByName(ReadExcelValues.data[1][Cap]).isDisplayed()) {
 						attachScreen();
 						System.out.println("User done scrolling, Printing last 3 cards when Copyright text displayed");
@@ -10772,176 +10961,6 @@ public class Utils extends Functions {
 			Assert.fail(host + path + " call is not present in Charles session, hence Custom Parameter: " + cust_param
 					+ " validation skipped");
 
-		}
-
-	}
-
-	/**
-	 * Verifies whether interstitial call has response
-	 * @param excelName
-	 * @param sheetName
-	 * @return
-	 * @throws Exception
-	 */
-	public static boolean isInterstitialCall_hasResponse(String excelName, String sheetName) throws Exception {
-		ReadExcelValues.excelValues(excelName, sheetName);
-		File fXmlFile = new File(outfile.getName());
-
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		dbFactory.setValidating(false);
-		dbFactory.setNamespaceAware(true);
-		dbFactory.setFeature("http://xml.org/sax/features/namespaces", false);
-		// dbFactory.setNamespaceAware(true);
-		dbFactory.setFeature("http://xml.org/sax/features/validation", false);
-		dbFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-dtd-grammar", false);
-		dbFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
-
-		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-
-		Document doc = dBuilder.parse(fXmlFile);
-// Getting the transaction element by passing xpath expression
-		NodeList nodeList = doc.getElementsByTagName("transaction");
-		String xpathExpression = "charles-session/transaction/@query";
-		List<String> getQueryList = evaluateXPath(doc, xpathExpression);
-
-// Getting custom_params amzn_b values
-		List<String> customParamsList = new ArrayList<String>();
-
-		String iuId = null;
-
-		// String iuId =
-		// "iu=%2F7646%2Fapp_iphone_us%2Fdb_display%2Fhome_screen%2Ftoday";
-		iuId = ReadExcelValues.data[17][Cap];
-
-		boolean iuExists = false;
-		for (String qry : getQueryList) {
-			if (qry.contains(iuId)) {
-				iuExists = true;
-				break;
-			}
-		}
-		boolean flag = false;
-		boolean resflag = false;
-		if (iuExists) {
-			System.out.println(iuId + " ad call is present");
-			logStep(iuId + " ad call is present");
-			outerloop: for (int p = 0; p < nodeList.getLength(); p++) {
-				// System.out.println("Total transactions: "+nodeList.getLength());
-				if (nodeList.item(p) instanceof Node) {
-					Node node = nodeList.item(p);
-					if (node.hasChildNodes()) {
-						NodeList nl = node.getChildNodes();
-						for (int j = 0; j < nl.getLength(); j++) {
-							// System.out.println("node1 length is: "+nl.getLength());
-							Node innernode = nl.item(j);
-							if (innernode != null) {
-								// System.out.println("Innernode name is: "+innernode.getNodeName());
-								if (innernode.getNodeName().equals("request")) {
-									if (innernode.hasChildNodes()) {
-										NodeList n2 = innernode.getChildNodes();
-										for (int k = 0; k < n2.getLength(); k++) {
-											// System.out.println("node2 length is: "+n2.getLength());
-											Node innernode2 = n2.item(k);
-											if (innernode2 != null) {
-												// System.out.println("Innernode2 name is: "+innernode2.getNodeName());
-												if (innernode2.getNodeType() == Node.ELEMENT_NODE) {
-													Element eElement = (Element) innernode2;
-													// System.out.println("Innernode2 element name is:
-													// "+eElement.getNodeName());
-													if (eElement.getNodeName().equals("headers")) {
-														if (innernode2.hasChildNodes()) {
-															NodeList n3 = innernode2.getChildNodes();
-															for (int q = 0; q < n3.getLength(); q++) {
-																// System.out.println("node3 length is:
-																// "+n3.getLength());
-																Node innernode3 = n3.item(q);
-																if (innernode3 != null) {
-																	// System.out.println("Innernode3 name is:
-																	// "+innernode3.getNodeName());
-																	if (innernode3.getNodeType() == Node.ELEMENT_NODE) {
-																		Element eElement1 = (Element) innernode3;
-																		// System.out.println("Innernode3 element name
-																		// is: "+eElement1.getNodeName());
-																		if (eElement1.getNodeName().equals("header")) {
-																			String content = eElement1.getTextContent();
-																			// System.out.println("request
-																			// body"+content);
-
-																			if (content.contains(iuId)) {
-																				flag = true;
-																				// System.out.println("request
-																				// body"+content);
-																				// istofRequestBodies.add(content);
-																				// System.out.println("request body
-																				// found "+content);
-																				// break;
-																			}
-																		}
-																	}
-																}
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-
-								if (flag) {
-									// System.out.println("Exiting after found true ");
-									// System.out.println("checking innernode name is: "+innernode.getNodeName());
-									if (innernode.getNodeName().equals("response")) {
-										// System.out.println(innernode.getNodeName());
-										if (innernode.hasChildNodes()) {
-											NodeList n2 = innernode.getChildNodes();
-											for (int k = 0; k < n2.getLength(); k++) {
-												Node innernode2 = n2.item(k);
-												if (innernode2 != null) {
-													if (innernode2.getNodeType() == Node.ELEMENT_NODE) {
-														Element eElement = (Element) innernode2;
-														if (eElement.getNodeName().equals("body")) {
-															String content = eElement.getTextContent();
-															// System.out.println("response body "+content);
-															if (content.contains(ReadExcelValues.data[13][Cap])) {
-																resflag = true;
-																break outerloop;
-
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-
-								}
-								// break;
-							}
-						}
-					}
-				}
-				flag = false;
-			}
-
-		} else {
-			System.out.println(iuId + " ad call is not present");
-			logStep(iuId + " ad call is not present");
-
-		}
-
-		// return flag;
-
-		// Get Pubad call from
-
-		if (resflag) {
-			System.out.println("Interstitial call has response, hence Interstitial Ad to be displayed");
-			logStep("Interstitial call has response, hence Interstitial Ad to be displayed");
-			return resflag;
-		} else {
-			System.out.println("Interstitial call doesnt have response, hence Interstitial Ad not to be displayed");
-			logStep("Interstitial call doesnt have response, hence Interstitial Ad not to be displayed");
-			return resflag;
 		}
 
 	}

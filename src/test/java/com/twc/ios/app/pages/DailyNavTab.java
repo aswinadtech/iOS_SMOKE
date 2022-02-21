@@ -181,8 +181,8 @@ public class DailyNavTab extends Utils {
 		int l = 0;
 		String dayNotPresent = "";
 		int failCount = 0;
-		for (int i = 0; i < 15; i++) {
-		//for (int i = 0; i < 7; i++) {
+		//for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < 7; i++) {
 			//Ad.findElementByXPath("//XCUIElementTypeCell[@name='dailyCollectionViewCell_" + i + "'" + "]").click();
 			By byDynamicDailyCell = MobileBy.xpath(dynamicDailyCell_Xpath+ i + "'" + "]");
 			dynamicDailyCell = Ad.findElement(byDynamicDailyCell);

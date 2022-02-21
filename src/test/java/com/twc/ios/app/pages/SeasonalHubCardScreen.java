@@ -75,12 +75,35 @@ public class SeasonalHubCardScreen extends Utils {
 		seasonalHubCardFirstIndex = Ad.findElement(bySeasonalHubCardFirstIndex);
 		TestBase.clickOnElement(bySeasonalHubCardFirstIndex, seasonalHubCardFirstIndex, "SeasonalHub Card First Index");
 		TestBase.waitForMilliSeconds(6000);
+		/**
+		 * Since Seasonalhub has Entry Interstitial, handling it once navigated to it
+		 */
+		CharlesProxy.proxy.stopRecording();
+		Functions.archive_folder("Charles");
+		TestBase.waitForMilliSeconds(5000);
+		CharlesProxy.proxy.getXml();
+		Utils.createXMLFileForCharlesSessionFile();
+		if (Utils.isInterStitialAdCalExists("Smoke", "SeasonalHub(Details)")) {
+
+			if (Utils.isInterstitialCall_hasResponse("Smoke", "SeasonalHub(Details)")) {
+				if (unlimitedInterstitial) {
+					handle_Interstitial_Ad();
+				} else {
+					if (!interStitialDisplayed) {
+						handle_Interstitial_Ad();
+					} else {
+						System.out.println("Interstitial Ad is already handled, hence not handling again");
+						logStep("Interstitial Ad is already handled, hence not handling again");
+
+					}
+				}
+			}
+		}
+		Functions.delete_folder("Charles");	
+		CharlesProxy.proxy.startRecording();
 		attachScreen();
 		navigateBackToFeedCard();
-		if (unlimitedInterstitial) {
-			handle_Interstitial_Ad();
-		}
-
+		
 	}
 	
 	@Step("Verify All Seasonal Hub index pages ad calls iu")
@@ -111,15 +134,12 @@ public class SeasonalHubCardScreen extends Utils {
 
 			System.out.println(currentIndex + " ad call verification started");
 			logStep(currentIndex + " ad call verification started");
-			//Utils.verifyPubadCal(excelName, sheetName);
+			Utils.verifyPubadCal(excelName, sheetName);
 			System.out.println(currentIndex + " ad call verification completed");
 			logStep(currentIndex + " ad call verification completed");
 
 			navigateBackToFeedCard();
 
-			if (unlimitedInterstitial) {
-				handle_Interstitial_Ad();
-			}
 		}
 		Functions.archive_folder("Charles");
 		sa.assertAll();
@@ -159,9 +179,6 @@ public class SeasonalHubCardScreen extends Utils {
 
 			navigateBackToFeedCard();
 
-			if (unlimitedInterstitial) {
-				handle_Interstitial_Ad();
-			}
 		}
 		Functions.archive_folder("Charles");
 		sa.assertAll();

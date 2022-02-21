@@ -3,6 +3,7 @@ package com.twc.ios.app.pages;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
+import com.twc.ios.app.charlesfunctions.CharlesProxy;
 import com.twc.ios.app.functions.Functions;
 import com.twc.ios.app.general.Driver;
 import com.twc.ios.app.general.TestBase;
@@ -49,21 +50,33 @@ public class DailyCardScreen extends Utils {
 		}
 		attachScreen();
 		navigateBackToFeedCard();
-		if (unlimitedInterstitial) {
-			handle_Interstitial_Ad();
-		} else {
-			if (!interStitialDisplayed) {
-				/*
-				 * Since Exit Interstitial displayed upon click on back icon, handling it once
-				 * click on back
-				 */
-				handle_Interstitial_Ad();
-			} else {
-				System.out.println("Interstitial Ad is already handled, hence not handling again");
-				logStep("Interstitial Ad is already handled, hence not handling again");
+		CharlesProxy.proxy.stopRecording();
+		Functions.archive_folder("Charles");
+		TestBase.waitForMilliSeconds(5000);
+		CharlesProxy.proxy.getXml();
+		Utils.createXMLFileForCharlesSessionFile();
+		if (Utils.isInterStitialAdCalExists("Smoke", "Daily(10day)")) {
 
+			if (Utils.isInterstitialCall_hasResponse("Smoke", "Daily(10day)")) {
+				if (unlimitedInterstitial) {
+					handle_Interstitial_Ad();
+				} else {
+					if (!interStitialDisplayed) {
+						/*
+						 * Since Exit Interstitial displayed upon click on back icon, handling it once
+						 * click on back
+						 */
+						handle_Interstitial_Ad();
+					} else {
+						System.out.println("Interstitial Ad is already handled, hence not handling again");
+						logStep("Interstitial Ad is already handled, hence not handling again");
+
+					}
+				}
 			}
 		}
+		CharlesProxy.proxy.startRecording();
+		Functions.delete_folder("Charles");		
 	}
 	
 	@Step("Navigate To Daily Card Content Page And Not to Handle Interstitials")
