@@ -1283,17 +1283,33 @@ public class SettingsScreen extends Utils {
 		ReadExcelValues.excelValues("Smoke", "TestMode");
 		Functions.scroll_Down();
 		List<MobileElement> responsiveModes = Ad.findElementsByName("Responsive Mode");
-		MobileElement responsiveSwitch = responsiveModes.get(1);
-		String responsiveSwitchValue = responsiveSwitch.getAttribute("value");
-		if (responsiveSwitchValue.equals("1")) {
-			System.out.println("Responsive Mode already enabled");
-			logStep("Responsive Mode already enabled");
-		} else {
-			responsiveSwitch.click();
-			logStep("Responsive Mode enabled");
+		attachScreen();
+		try {
+			MobileElement responsiveSwitch = responsiveModes.get(1);
+			String responsiveSwitchValue = responsiveSwitch.getAttribute("value");
+			if (responsiveSwitchValue.equals("1")) {
+				System.out.println("Responsive Mode already enabled");
+				logStep("Responsive Mode already enabled");
+			} else {
+				responsiveSwitch.click();
+				logStep("Responsive Mode enabled");
+			}
 		}
+		catch(Exception e) {
+			MobileElement responsiveSwitch = Ad.findElementByXPath("//*[@name=‘Responsive Mode’]//following-sibling::XCUIElementTypeSwitch");
+			String responsiveSwitchValue = responsiveSwitch.getAttribute("value");
+			if (responsiveSwitchValue.equals("1")) {
+				System.out.println("Responsive Mode already enabled");
+				logStep("Responsive Mode already enabled");
+			} else {
+				responsiveSwitch.click();
+				logStep("Responsive Mode enabled");
+			}
+		}
+		
 
 	}
+	
 
 	@Step("Select Airlock Branch: {0}")
 	public void select_Airlock_Branch(String branchName) throws Exception {
