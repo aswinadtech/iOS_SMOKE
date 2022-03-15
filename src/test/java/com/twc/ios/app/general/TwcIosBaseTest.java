@@ -279,6 +279,32 @@ public class TwcIosBaseTest extends CharlesProxy{
 	}
 	
 	/**
+	 * Create a Charles configuration to rewrite privacy regime to the given regime (CHINA) values. 
+	 * @param fileName
+	 *            - Name of file (.config extension) to store configuration. Will be created in user.dir
+	 * @return Config Files (for deletion in After method)
+	 */
+	public File rewriteRuleToEnableCHINA(String fileName) {
+		final List<File> configFiles = new ArrayList<File>();
+		final File parentDir = new File(Constants.PATH_USER_HOME);
+		parentDir.mkdirs();
+		final File configFile = new File(parentDir, fileName);
+		configFile.setWritable(true);
+
+		// Create Charles config with header response rewrite for twc-privacy:exempt -> twc-privacy:gdpr
+		CharlesConfiguration config = new CharlesConfiguration();
+		
+		config.addRule(RewriteRuleType.ADD_HEADER, true, false, "", false, "", false, false, false, "X-Forwarded-For", false, "221.192.199.49", false, RewriteRuleReplaceType.ALL);
+		config.addLocation(Protocol.HTTPS, "dsx.weather.com", "", "/cms/v5/privacy/en_US/twc-ios-flagship/*", "");
+
+		config.saveConfigurations(fileName);
+
+
+		return configFile;
+	}
+	
+	
+	/**
 	 * Create a Charles configuration to rewrite vt1ContentMode mode to the given content mode. Rewrite to severe1 or severe2 to show Breaking
 	 * News/Trending module
 	 *

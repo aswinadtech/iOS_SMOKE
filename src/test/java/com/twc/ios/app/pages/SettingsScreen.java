@@ -885,11 +885,18 @@ public class SettingsScreen extends Utils {
 			// Select desired user Group
 
 			//Ad.findElementByClassName("XCUIElementTypeSearchField").sendKeys(userGroupName);
+			
 			userGroupSearchField = Ad.findElement(byUserGroupSearchField);
 			TestBase.typeText(userGroupSearchField, "User Group Search Field", userGroupName);
 			try {
 				List<MobileElement> AdsTestSwitches = Ad.findElementsByName(userGroupName);
-				AdsTestSwitch = AdsTestSwitches.get(1);
+				try {
+					AdsTestSwitch = AdsTestSwitches.get(1);
+				}catch (Exception ex) {
+					AdsTestSwitch = Ad.findElementByXPath("//*[@name='"+userGroupName+"']/following-sibling::XCUIElementTypeSwitch");
+				}
+				
+				
 			} catch (Exception e) {
 				// Back to AirlockGroup
 				Ad.findElementByName(ReadExcelValues.data[22][Cap]).click();
@@ -898,7 +905,11 @@ public class SettingsScreen extends Utils {
 				Ad.findElementByName(ReadExcelValues.data[16][Cap]).click();
 				Thread.sleep(10000);
 				List<MobileElement> AdsTestSwitches = Ad.findElementsByName(userGroupName);
-				AdsTestSwitch = AdsTestSwitches.get(1);
+				try {
+					AdsTestSwitch = AdsTestSwitches.get(1);
+				}catch (Exception ex) {
+					AdsTestSwitch = Ad.findElementByXPath("//*[@name='"+userGroupName+"']/following-sibling::XCUIElementTypeSwitch");
+				}
 
 			}
 			SwitchValue = AdsTestSwitch.getAttribute("value");
@@ -929,7 +940,11 @@ public class SettingsScreen extends Utils {
 				TestBase.typeText(userGroupSearchField, "User Group Search Field", "AdsTestAdUnitOnly");
 				try {
 					List<MobileElement> AdsTestSwitches = Ad.findElementsByName("AdsTestAdUnitOnly");
-					AdsTestSwitch = AdsTestSwitches.get(1);
+					try {
+						AdsTestSwitch = AdsTestSwitches.get(1);
+					}catch (Exception ex) {
+						AdsTestSwitch = Ad.findElementByXPath("//*[@name='AdsTestAdUnitOnly']/following-sibling::XCUIElementTypeSwitch");
+					}
 				} catch (Exception e) {
 					// Back to AirlockGroup
 					Ad.findElementByName(ReadExcelValues.data[22][Cap]).click();
@@ -938,7 +953,11 @@ public class SettingsScreen extends Utils {
 					Ad.findElementByName(ReadExcelValues.data[16][Cap]).click();
 					Thread.sleep(10000);
 					List<MobileElement> AdsTestSwitches = Ad.findElementsByName("AdsTestAdUnitOnly");
-					AdsTestSwitch = AdsTestSwitches.get(1);
+					try {
+						AdsTestSwitch = AdsTestSwitches.get(1);
+					}catch (Exception ex) {
+						AdsTestSwitch = Ad.findElementByXPath("//*[@name='AdsTestAdUnitOnly']/following-sibling::XCUIElementTypeSwitch");
+					}
 
 				}
 				SwitchValue = AdsTestSwitch.getAttribute("value");
@@ -965,7 +984,11 @@ public class SettingsScreen extends Utils {
 				TestBase.typeText(userGroupSearchField, "User Group Search Field", "IOSFLAG-6119");
 				try {
 					List<MobileElement> AdsTestSwitches = Ad.findElementsByName("IOSFLAG-6119");
-					AdsTestSwitch = AdsTestSwitches.get(1);
+					try {
+						AdsTestSwitch = AdsTestSwitches.get(1);
+					}catch (Exception ex) {
+						AdsTestSwitch = Ad.findElementByXPath("//*[@name='IOSFLAG-6119']/following-sibling::XCUIElementTypeSwitch");
+					}
 				} catch (Exception e) {
 					// Back to AirlockGroup
 					Ad.findElementByName(ReadExcelValues.data[22][Cap]).click();
@@ -974,7 +997,11 @@ public class SettingsScreen extends Utils {
 					Ad.findElementByName(ReadExcelValues.data[16][Cap]).click();
 					Thread.sleep(10000);
 					List<MobileElement> AdsTestSwitches = Ad.findElementsByName("IOSFLAG-6119");
-					AdsTestSwitch = AdsTestSwitches.get(1);
+					try {
+						AdsTestSwitch = AdsTestSwitches.get(1);
+					}catch (Exception ex) {
+						AdsTestSwitch = Ad.findElementByXPath("//*[@name='IOSFLAG-6119']/following-sibling::XCUIElementTypeSwitch");
+					}
 
 				}
 				SwitchValue = AdsTestSwitch.getAttribute("value");
@@ -1001,7 +1028,11 @@ public class SettingsScreen extends Utils {
 				TestBase.typeText(userGroupSearchField, "User Group Search Field", "IOSFLAG-7423");
 				try {
 					List<MobileElement> AdsTestSwitches = Ad.findElementsByName("IOSFLAG-7423");
-					AdsTestSwitch = AdsTestSwitches.get(1);
+					try {
+						AdsTestSwitch = AdsTestSwitches.get(1);
+					}catch (Exception ex) {
+						AdsTestSwitch = Ad.findElementByXPath("//*[@name='IOSFLAG-7423']/following-sibling::XCUIElementTypeSwitch");
+					}
 				} catch (Exception e) {
 					// Back to AirlockGroup
 					Ad.findElementByName(ReadExcelValues.data[22][Cap]).click();
@@ -1010,7 +1041,11 @@ public class SettingsScreen extends Utils {
 					Ad.findElementByName(ReadExcelValues.data[16][Cap]).click();
 					Thread.sleep(10000);
 					List<MobileElement> AdsTestSwitches = Ad.findElementsByName("IOSFLAG-7423");
-					AdsTestSwitch = AdsTestSwitches.get(1);
+					try {
+						AdsTestSwitch = AdsTestSwitches.get(1);
+					}catch (Exception ex) {
+						AdsTestSwitch = Ad.findElementByXPath("//*[@name='IOSFLAG-7423']/following-sibling::XCUIElementTypeSwitch");
+					}
 
 				}
 				SwitchValue = AdsTestSwitch.getAttribute("value");
@@ -1042,7 +1077,11 @@ public class SettingsScreen extends Utils {
 				TestBase.typeText(userGroupSearchField, "User Group Search Field", "UnlimitedInterstitial");
 				try {
 					List<MobileElement> AdsTestSwitches = Ad.findElementsByName("UnlimitedInterstitial");
-					AdsTestSwitch = AdsTestSwitches.get(1);
+					try {
+						AdsTestSwitch = AdsTestSwitches.get(1);
+					}catch (Exception ex) {
+						AdsTestSwitch = Ad.findElementByXPath("//*[@name='UnlimitedInterstitial']/following-sibling::XCUIElementTypeSwitch");
+					}
 				} catch (Exception e) {
 					// Back to AirlockGroup
 					Ad.findElementByName(ReadExcelValues.data[22][Cap]).click();
@@ -1051,7 +1090,11 @@ public class SettingsScreen extends Utils {
 					Ad.findElementByName(ReadExcelValues.data[16][Cap]).click();
 					Thread.sleep(10000);
 					List<MobileElement> AdsTestSwitches = Ad.findElementsByName("UnlimitedInterstitial");
-					AdsTestSwitch = AdsTestSwitches.get(1);
+					try {
+						AdsTestSwitch = AdsTestSwitches.get(1);
+					}catch (Exception ex) {
+						AdsTestSwitch = Ad.findElementByXPath("//*[@name='UnlimitedInterstitial']/following-sibling::XCUIElementTypeSwitch");
+					}
 
 				}
 				SwitchValue = AdsTestSwitch.getAttribute("value");
@@ -1078,7 +1121,11 @@ public class SettingsScreen extends Utils {
 				TestBase.typeText(userGroupSearchField, "User Group Search Field", "IOSFLAG-6119");
 				try {
 					List<MobileElement> AdsTestSwitches = Ad.findElementsByName("IOSFLAG-6119");
-					AdsTestSwitch = AdsTestSwitches.get(1);
+					try {
+						AdsTestSwitch = AdsTestSwitches.get(1);
+					}catch (Exception ex) {
+						AdsTestSwitch = Ad.findElementByXPath("//*[@name='IOSFLAG-6119']/following-sibling::XCUIElementTypeSwitch");
+					}
 				} catch (Exception e) {
 					// Back to AirlockGroup
 					Ad.findElementByName(ReadExcelValues.data[22][Cap]).click();
@@ -1087,7 +1134,11 @@ public class SettingsScreen extends Utils {
 					Ad.findElementByName(ReadExcelValues.data[16][Cap]).click();
 					Thread.sleep(10000);
 					List<MobileElement> AdsTestSwitches = Ad.findElementsByName("IOSFLAG-6119");
-					AdsTestSwitch = AdsTestSwitches.get(1);
+					try {
+						AdsTestSwitch = AdsTestSwitches.get(1);
+					}catch (Exception ex) {
+						AdsTestSwitch = Ad.findElementByXPath("//*[@name='IOSFLAG-6119']/following-sibling::XCUIElementTypeSwitch");
+					}
 
 				}
 				SwitchValue = AdsTestSwitch.getAttribute("value");
@@ -1114,7 +1165,11 @@ public class SettingsScreen extends Utils {
 				TestBase.typeText(userGroupSearchField, "User Group Search Field", "Criteo");
 				try {
 					List<MobileElement> AdsTestSwitches = Ad.findElementsByName("Criteo");
-					AdsTestSwitch = AdsTestSwitches.get(1);
+					try {
+						AdsTestSwitch = AdsTestSwitches.get(1);
+					}catch (Exception ex) {
+						AdsTestSwitch = Ad.findElementByXPath("//*[@name='Criteo']/following-sibling::XCUIElementTypeSwitch");
+					}
 				} catch (Exception e) {
 					// Back to AirlockGroup
 					Ad.findElementByName(ReadExcelValues.data[22][Cap]).click();
@@ -1123,7 +1178,11 @@ public class SettingsScreen extends Utils {
 					Ad.findElementByName(ReadExcelValues.data[16][Cap]).click();
 					Thread.sleep(10000);
 					List<MobileElement> AdsTestSwitches = Ad.findElementsByName("Criteo");
-					AdsTestSwitch = AdsTestSwitches.get(1);
+					try {
+						AdsTestSwitch = AdsTestSwitches.get(1);
+					}catch (Exception ex) {
+						AdsTestSwitch = Ad.findElementByXPath("//*[@name='Criteo']/following-sibling::XCUIElementTypeSwitch");
+					}
 
 				}
 				SwitchValue = AdsTestSwitch.getAttribute("value");
@@ -1155,7 +1214,11 @@ public class SettingsScreen extends Utils {
 				TestBase.typeText(userGroupSearchField, "User Group Search Field", "UnlimitedInterstitial");
 				try {
 					List<MobileElement> AdsTestSwitches = Ad.findElementsByName("UnlimitedInterstitial");
-					AdsTestSwitch = AdsTestSwitches.get(1);
+					try {
+						AdsTestSwitch = AdsTestSwitches.get(1);
+					}catch (Exception ex) {
+						AdsTestSwitch = Ad.findElementByXPath("//*[@name='UnlimitedInterstitial']/following-sibling::XCUIElementTypeSwitch");
+					}
 				} catch (Exception e) {
 					// Back to AirlockGroup
 					Ad.findElementByName(ReadExcelValues.data[22][Cap]).click();
@@ -1164,7 +1227,11 @@ public class SettingsScreen extends Utils {
 					Ad.findElementByName(ReadExcelValues.data[16][Cap]).click();
 					Thread.sleep(10000);
 					List<MobileElement> AdsTestSwitches = Ad.findElementsByName("UnlimitedInterstitial");
-					AdsTestSwitch = AdsTestSwitches.get(1);
+					try {
+						AdsTestSwitch = AdsTestSwitches.get(1);
+					}catch (Exception ex) {
+						AdsTestSwitch = Ad.findElementByXPath("//*[@name='UnlimitedInterstitial']/following-sibling::XCUIElementTypeSwitch");
+					}
 
 				}
 				SwitchValue = AdsTestSwitch.getAttribute("value");
@@ -1260,8 +1327,8 @@ public class SettingsScreen extends Utils {
 
 	@Step("Clear Airlock User Groups")
 	public void clearAirlock() throws Exception {
-		System.out.println("Try to clear Airlock groups");
-		logStep("Try to clear Airlock groups");
+		System.out.println("Try to clear Airlock groups/branch");
+		logStep("Try to clear Airlock groups/branch");
 		ReadExcelValues.excelValues("Smoke", "TestMode");
 		Ad.findElementByName(ReadExcelValues.data[24][Cap]).click();
 		try {
@@ -1283,15 +1350,31 @@ public class SettingsScreen extends Utils {
 		ReadExcelValues.excelValues("Smoke", "TestMode");
 		Functions.scroll_Down();
 		List<MobileElement> responsiveModes = Ad.findElementsByName("Responsive Mode");
-		MobileElement responsiveSwitch = responsiveModes.get(1);
-		String responsiveSwitchValue = responsiveSwitch.getAttribute("value");
-		if (responsiveSwitchValue.equals("1")) {
-			System.out.println("Responsive Mode already enabled");
-			logStep("Responsive Mode already enabled");
-		} else {
-			responsiveSwitch.click();
-			logStep("Responsive Mode enabled");
+		attachScreen();
+		try {
+			MobileElement responsiveSwitch = responsiveModes.get(1);
+			String responsiveSwitchValue = responsiveSwitch.getAttribute("value");
+			
+			if (responsiveSwitchValue.equals("1")) {
+				System.out.println("Responsive Mode already enabled");
+				logStep("Responsive Mode already enabled");
+			} else {
+				responsiveSwitch.click();
+				logStep("Responsive Mode enabled");
+			}	
+		}catch (Exception e) {
+			MobileElement responsiveSwitch = Ad.findElementByXPath("//*[@name='Responsive Mode']/following-sibling::XCUIElementTypeSwitch");
+			String responsiveSwitchValue = responsiveSwitch.getAttribute("value");
+			
+			if (responsiveSwitchValue.equals("1")) {
+				System.out.println("Responsive Mode already enabled");
+				logStep("Responsive Mode already enabled");
+			} else {
+				responsiveSwitch.click();
+				logStep("Responsive Mode enabled");
+			}
 		}
+		
 
 	}
 

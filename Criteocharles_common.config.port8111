@@ -237,7 +237,7 @@
       <entry>
         <string>Rewrite</string>
         <rewrite>
-          <toolEnabled>false</toolEnabled>
+          <toolEnabled>true</toolEnabled>
           <debugging>false</debugging>
           <sets>
             <rewriteSet>

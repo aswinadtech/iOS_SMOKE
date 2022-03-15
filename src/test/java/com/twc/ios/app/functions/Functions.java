@@ -408,6 +408,77 @@ public class Functions extends Driver {
 		// Write_result wrResult1 = new Write_result();
 		// wrResult1.WriteResult("Capabilities", ipaPath.toString(), 14, Cap);
 	}
+	
+	/**
+	 * Use this method when Launch the TWC App For China, as the app gets closed automatically after launch, no need to verify popups
+	 * @param ResetType
+	 * @throws Exception
+	 */
+	public static void launchtheAppForChina(String ResetType) throws Exception {
+		FTLScreens ftlScreens;
+		AddressScreen addressScreen;
+		ReadExcelValues.excelValues("Smoke", "Capabilities");
+		// service = AppiumDriverLocalService.buildService(new
+		// AppiumServiceBuilder().withAppiumJS(new
+		// File("/usr/local/lib/node_modules/appium/build/lib/main.js")).withIPAddress("0.0.0.0").usingPort(port));
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+
+		// Capabilities for IOS and Android Based on Selected on Device Selection
+		capabilities.setCapability(ReadExcelValues.data[1][0], ReadExcelValues.data[1][Cap]);
+		capabilities.setCapability(ReadExcelValues.data[2][0], ReadExcelValues.data[2][Cap]);
+		capabilities.setCapability(ReadExcelValues.data[3][0], ReadExcelValues.data[3][Cap]);
+		capabilities.setCapability(ReadExcelValues.data[5][0], ReadExcelValues.data[5][Cap]);
+		capabilities.setCapability(ReadExcelValues.data[6][0], ReadExcelValues.data[6][Cap]);
+		capabilities.setCapability("automationName", "XCUITest");
+		capabilities.setCapability(ReadExcelValues.data[7][0], "=" + ReadExcelValues.data[7][Cap]);
+		// capabilities.setCapability(readExcelValues.data[7][0],"iPhone");
+		capabilities.setCapability(ReadExcelValues.data[8][0], ReadExcelValues.data[8][Cap]);
+		capabilities.setCapability("noReset", ResetType);
+		// ipaPath="/Users/apple/Downloads/ads-ios-master/Build/v9.1-int-423464.ipa";
+		// capabilities.setCapability(readExcelValues.data[10][0],
+		// readExcelValues.data[10][Cap]);
+		// capabilities.setCapability("app","/Users/narasimhanukala/git/ads-automation/ios_Smoke_Automation/Build/iPhone_-_Flagship.ipa");
+		capabilities.setCapability(ReadExcelValues.data[12][0], ReadExcelValues.data[12][Cap]);
+		capabilities.setCapability(ReadExcelValues.data[13][0], "7200");
+		capabilities.setCapability(ReadExcelValues.data[14][0], true);
+		// capabilities.setCapability(readExcelValues.data[16][0],
+		// readExcelValues.data[16][Cap]);
+		capabilities.setCapability(ReadExcelValues.data[11][0], ReadExcelValues.data[11][Cap]);
+		capabilities.setCapability("launchTimeout", 60000);
+		capabilities.setCapability("useNewWDA", true);
+		// capabilities.setCapability("--session-override",true);
+		capabilities.setCapability("bundleId", "com.weather.TWC");
+		capabilities.setCapability("xcodeConfigfile",
+				"/Applications/Appium.app/Contents/Resources/app/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent/Config.xcconfig");
+		// capabilities.setCapability("xcodeSigningId","iPhone Developer");
+		// capabilities.setCapability("locationServicesEnabled", false);
+		capabilities.setCapability("realDeviceLogger", "/Users/apple/node_modules/deviceconsole");
+		capabilities.setCapability("wdaLocalPort", "7403");
+		// capabilities.setCapability("locationServicesAuthorized", true);
+		// capabilities.setCapability("waitForAppScript","$.delay(5000); true");
+		capabilities.setCapability("clearSystemFiles", true);
+		System.out.println("Reading capabilities done");
+		// Wait time for Execution of node.js
+		// TestBase.waitForMilliSeconds(10000);
+		Ad = new IOSDriver(new URL("http://127.0.0.1:4733/wd/hub"), capabilities);
+		// Ad= new IOSDriver<MobileElement>(service, capabilities);
+		Ad.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		// Handle Extra popup appears when app launched (like New module ebnable)
+		ftlScreens = new FTLScreens(Ad);
+		ftlScreens.handle_Unwanted_Popups_China();
+		// Functions.enternewAddress("New York City, New York");
+		//addressScreen = new AddressScreen(Ad);
+		//addressScreen.enternewAddress(true, "Atlanta, Georgia");
+		// Functions.enternewAddress("Woodbridge Township, New Jersey");
+
+		// Functions.enternewAddress("Bridgeton, New Jersey");
+		// //Ad.tap(1, 10, 6, 2000);
+		// Functions.BacktoWeather();
+		// Functions.Take//ScreenShot();
+
+		// Write_result wrResult1 = new Write_result();
+		// wrResult1.WriteResult("Capabilities", ipaPath.toString(), 14, Cap);
+	}
 
 	/**
 	 * Launch the TWC App with localization settings
@@ -3402,6 +3473,21 @@ public class Functions extends Driver {
 			System.out.println("TWC App is Not yet installed, hence ignoring the Application State Check");
 			logStep("TWC App is Not yet installed, hence ignoring the Application State Check");
 		}
+
+	}
+	/**
+	 * This method verifies app state with expected state.
+	 * NOT_INSTALLED
+	 * NOT_RUNNING
+	 * RUNNING_IN_BACKGROUND
+	 * RUNNING_IN_BACKGROUND_SUSPENDED
+	 * RUNNING_IN_FOREGROUND
+	 * @param expectedState
+	 */
+	public static void checkForAppState(ApplicationState  expectedState) {
+		ApplicationState appState = Ad.queryAppState("com.weather.TWC");
+		Assert.assertEquals(appState, expectedState);
+		
 
 	}
 

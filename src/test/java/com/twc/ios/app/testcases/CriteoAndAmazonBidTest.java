@@ -1864,7 +1864,7 @@ public class CriteoAndAmazonBidTest extends TwcIosBaseTest {
 		System.out
 				.println("****** Enabling Preconfigurations to validate amazon bid id's of Interstitial Call Started");
 		logStep("****** Enabling Preconfigurations to validate amazon bid id's of Interstitial Call Started");
-		stScreen.select_Airlock_Branch("UnlimitedInterstitialAutomation01");
+		stScreen.select_Airlock_Branch("UnlimitedInterstitialAutomation02");
 		stScreen.select_Airlock_UserGroup("amazon");
 		Functions.archive_folder("Charles");
 		//stScreen.select_Airlock_Branch("HDB");

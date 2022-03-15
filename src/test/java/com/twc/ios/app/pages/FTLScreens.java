@@ -262,5 +262,86 @@ public class FTLScreens extends Utils {
 		}
 
 	}
+	
+	@Step("Handle Unwanted Popups during app launch For China")
+	public void handle_Unwanted_Popups_China() throws Exception {
+		try {
+			TestBase.waitForVisibilityOfElementLocated(Ad, 30, bySettingsButton);
+			settingsButton = Ad.findElement(bySettingsButton);
+			System.out
+					.println("Settings Button found after app launch, hence no need to verify the application alerts");
+			logStep("Settings Button found after app launch, hence no need to verify the application alerts");
+			try {
+				TestBase.waitForVisibilityOfElementLocated(Ad, 10, byCloseButton);
+				closeButton = Ad.findElement(byCloseButton);
+				TestBase.clickOnElement(byCloseButton, closeButton, "Close Button");
+				System.out.println("Premium Big Ad displayed on the screen and closed");
+				logStep("Premium Big Ad displayed on the screen and closed");
+			} catch (Exception e) {
+				try {
+					TestBase.waitForVisibilityOfElementLocated(Ad, 10, byCancelButton);
+					cancelButton = Ad.findElement(byCancelButton);
+					TestBase.clickOnElement(byCancelButton, cancelButton, "Cancel Button");
+					System.out.println("Premium Big Ad displayed on the screen and closed");
+					logStep("Premium Big Ad displayed on the screen and closed");
+				} catch (Exception e1) {
+					System.out.println("Premium Big Ad not displayed on the screen");
+					logStep("Premium Big Ad not displayed on the screen");
+				}
+			}
+		} catch (Exception e1) {
+			try {
+				//TestBase.waitForVisibilityOfElementLocated(Ad, 40, byCloseButton);
+				closeButton = Ad.findElement(byCloseButton);
+				TestBase.clickOnElement(byCloseButton, closeButton, "Close Button");
+				System.out.println("Intermittent Ad displayed on the screen and closed");
+				logStep("Intermittent Ad displayed on the screen and closed");
+			} catch (Exception e) {
+				System.out.println("Intermittent Ad not displayed on the screen");
+				logStep("Intermittent Ad not displayed on the screen");
+			}
+			try {
+				TestBase.waitForVisibilityOfElementLocated(Ad, 40, byChangeToAlwaysAllow);
+				changeToAlwaysAllow = Ad.findElement(byChangeToAlwaysAllow);
+				TestBase.clickOnElement(byChangeToAlwaysAllow, changeToAlwaysAllow, "Change to Always Allow Button");
+				System.out.println("Change to Always Allow button available on the screen and handled");
+				logStep("Change to Always Allow button available on the screen and handled");
+			} catch (Exception e) {
+				System.out.println("Change to Always Allow button not available on the screen");
+				logStep("Change to Always Allow button not available on the screen");
+			}
+
+			try {
+				TestBase.waitForVisibilityOfElementLocated(Ad, 40, byCloseButton);
+				closeButton = Ad.findElement(byCloseButton);
+				TestBase.clickOnElement(byCloseButton, closeButton, "Close Button");
+				//Ad.findElementByName("close_button").click();
+				System.out.println("App upgrade alert available on the screen and handled");
+				logStep("App upgrade alert available on the screen and handled");
+			} catch (Exception e) {
+				System.out.println("App upgrade alert not available on the screen");
+				logStep("App upgrade alert not available on the screen");
+			}
+			try {
+				TestBase.waitForVisibilityOfElementLocated(Ad, 40, byLetsGoButton);
+				letsGoButton = Ad.findElement(byLetsGoButton);
+				TestBase.clickOnElement(byLetsGoButton, letsGoButton, "Let's Go/Next Button");
+				System.out.println("Let's Go/Next button available on the screen and handled");
+				logStep("Let's Go/Next button available on the screen and handled");
+			} catch (Exception e) {
+				System.out.println("Let's Go/Next button not available on the screen");
+				logStep("Let's Go/Next button not available on the screen");
+			}
+
+			
+		}
+		try {
+			attachScreen();
+		} catch (Exception e) {
+			System.out.println("An exception while attaching screenshot");
+			logStep("An exception while attaching screenshot");
+		}
+
+	}
 
 }
