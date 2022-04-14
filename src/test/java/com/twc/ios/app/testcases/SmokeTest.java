@@ -319,7 +319,7 @@ public class SmokeTest extends TwcIosBaseTest {
 		Utils.verifyPubadCal("Smoke", "SafetyAndPreparedness");
 	}
 	
-	@Test(priority = 116, enabled = true)
+	/*@Test(priority = 116, enabled = true)
 	@Description("Validating Safety And Preparedness call Response")
 	public void Validate_SafetyAndPreparednessCard_Call_Response() throws Exception {
 		System.out.println("==============================================");
@@ -328,7 +328,7 @@ public class SmokeTest extends TwcIosBaseTest {
 
 		Utils.Verify_Gampad_Call_ByResponseText("Smoke", "SafetyAndPreparedness");
 
-	}
+	}*/
 
 	/**
 	 * This method validates sod custom parameter of Marquee Call
